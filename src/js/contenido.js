@@ -158,7 +158,7 @@ $(document).ready(main);
 
 			///// CONTENIDO 
 	
-			if ($('#message').val().length >= 3000 ) {
+			if ($('#message').val().length >= 50000 ) {
 				$('#message').css(
 					{
 						'border' : '3px solid red'

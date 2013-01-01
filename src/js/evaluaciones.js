@@ -160,7 +160,7 @@ $(document).ready(main);
 
 			///// CONTENIDO 
 	
-			if ($('#descripcion_evaluacion').val().length >= 3000 || $('#descripcion_evaluacion').val().length == 0) {
+			if ($('#descripcion_evaluacion').val().length >= 50000 || $('#descripcion_evaluacion').val().length == 0) {
 				$('#descripcion_evaluacion').css(
 					{
 						'border' : '3px solid red'
