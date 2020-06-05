@@ -148,7 +148,7 @@
 					<div id="ModalEditar<?= $contenido[0] ?>" class="editar">
 						<form name="agregar_contenido" method="post"  enctype="multipart/form-data" action="../../src/php/editarContenido.php">
 							<div class="grupo">
-								<label for="numero">Objetivo</label>
+								<label for="numero">Numero de Objetivo</label>
 								<input id="numero" name="numero" type="number" placeholder="Numero de Objetivo" value="<?= $contenido[2] ?>">	
 							</div>
 							
