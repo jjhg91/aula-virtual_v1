@@ -1,10 +1,12 @@
 <?php 
 	require_once('conn.php');
 	
-
+	$post = (int)$_POST['post'];
+	$titulo = $_POST['title'];
+	$mensaje = nl2br($_POST['message']);
 	$materia = (int)$_POST['materia'];
-	$numero = (int)$_POST['numero'];
-	$contenido = nl2br($_POST['message']);
+	$fecha = date("m-d-Y",time()) ;
+
 	$nlink1 = $_POST['nlink1'];
 	$nlink2 = $_POST['nlink2'];
 	$nlink3 = $_POST['nlink3'];
@@ -15,15 +17,32 @@
 	$link3 = $_POST['link3'];
 	$link4 = $_POST['link4'];
 
-	if($materia AND $numero AND $contenido AND strlen($contenido) <= 10000 ){
-		$contenido = stripslashes($contenido);
-		$contenido =  addslashes($contenido);
 
-		$inser = $myPDO2->prepare("
-			INSERT INTO contenido(id_profesorcursogrupo, numero, descripcion,nlink1,nlink2,nlink3,nlink4,link1,link2,link3,link4)
-			VALUES($materia, $numero, '$contenido','$nlink1','$nlink2','$nlink3','$nlink4','$link1','$link2','$link3','$link4')
+	
+	if ( is_string($titulo) AND is_string($mensaje) AND strlen($titulo) <= 300 AND strlen($mensaje) <= 10000 ) {
+		$mensaje = stripslashes($mensaje);
+		$mensaje =  addslashes($mensaje);
+		
+		$titulo = stripslashes($titulo);
+		$titulo =  addslashes($titulo);
+
+		$insertar = $myPDO2->prepare("
+			UPDATE blog SET 
+			id_profesorcursogrupo = $materia,
+			fecha = '$fecha',
+			descripcion = '$mensaje',
+			titulo = '$titulo',
+			nlink1 = '$nlink1',
+			nlink2 = '$nlink2',
+			nlink3 = '$nlink3',
+			nlink4 = '$nlink4',
+			link1 = '$link1',
+			link2 = '$link2',
+			link3 = '$link3',
+			link4 = '$link4'
+			WHERE id_blog = $post
 			");
-		$inser->execute();
+		$insertar->execute();
 
 
 
@@ -34,18 +53,15 @@
 
 
 
-
-
-
-
-				// INICIO DE PRUEBA
+		// INICIO DE PRUEBA
 
 
 		$se = $myPDO2->prepare("
-			SELECT * FROM contenido
+			SELECT * FROM blog
 			WHERE id_profesorcursogrupo = $materia
-			AND numero = $numero
-			AND descripcion = '$contenido'
+			AND fecha = '$fecha'
+			AND descripcion = '$mensaje'
+			AND titulo = '$titulo'
 			");
 		$se->execute();
 		$sele = $se->fetch();
@@ -63,12 +79,16 @@
 		$nombre = "$alumno-1";
 		$limite = 20480 *1024;
 
-		$ruta = "../../upload/contenido/$materia/$alumno/";
+		$ruta = "../../upload/blog/$materia/$alumno/";
 
 
 		$extensiones = array('pdf','doc','docx','xlsx','xls','txt','pptx','ppt','pub','jpg','jpeg','gif','png','ai','svg','git','psd','raw','mp4','m4v','mov','mpg','mpeg','swf','zip','rar','mp3','wav','opus','PDF','DOC','DOCX','XLSX','XLS','TXT','PPTX','PPT','PUB','JPG','JPEG','GIF','PNG','AI','SVG','GIT','PSD','RAW','MP4','M4V','MOV','MPG','MPEG','SWF','ZIP','RAR','MP3','WAV','OPUS','Pdf','Doc','Docx','Xlsx','Xls','Txt','Pptx','Ppt','Pub','Jpg','Jpeg','Gif','Png','Ai','Svg','Git','Psd','Raw','Mp4','M4V','Mov','Mpg','Mpeg','Swf','Zip','Rar','Mp3','Wav','Opus');
 
+		
+
 		if(in_array($tipo, $extensiones) && $size <= $limite){
+
+			
 			if(!file_exists($ruta)){
 				mkdir($ruta,0777,true);
 			}
@@ -80,8 +100,8 @@
 				}
 			if (move_uploaded_file($tmp, $ruta.$nombre.".".$tipo)) {
 				$update1 = $myPDO2->prepare("
-			   		UPDATE contenido SET file1='$nombre.$tipo' 
-					WHERE id_contenido = $alumno AND id_profesorcursogrupo = $materia;
+			   		UPDATE blog SET file1='$nombre.$tipo' 
+					WHERE id_blog = $alumno AND id_profesorcursogrupo = $materia;
 			   		");
 			   	$update1->execute();
 				
@@ -105,7 +125,7 @@
 		$nombre = "$alumno-2";
 		$limite = 20480 *1024;
 
-		$ruta = "../../upload/contenido/$materia/$alumno/";
+		$ruta = "../../upload/blog/$materia/$alumno/";
 
 		$extensiones = array('pdf','doc','docx','xlsx','xls','txt','pptx','ppt','pub','jpg','jpeg','gif','png','ai','svg','git','psd','raw','mp4','m4v','mov','mpg','mpeg','swf','zip','rar','mp3','wav','opus','PDF','DOC','DOCX','XLSX','XLS','TXT','PPTX','PPT','PUB','JPG','JPEG','GIF','PNG','AI','SVG','GIT','PSD','RAW','MP4','M4V','MOV','MPG','MPEG','SWF','ZIP','RAR','MP3','WAV','OPUS','Pdf','Doc','Docx','Xlsx','Xls','Txt','Pptx','Ppt','Pub','Jpg','Jpeg','Gif','Png','Ai','Svg','Git','Psd','Raw','Mp4','M4V','Mov','Mpg','Mpeg','Swf','Zip','Rar','Mp3','Wav','Opus');
 
@@ -121,8 +141,8 @@
 			}
 			if (move_uploaded_file($tmp, $ruta.$nombre.".".$tipo)) {
 				$update2 = $myPDO2->prepare("
-			   		UPDATE contenido SET file2='$nombre.$tipo' 
-					WHERE id_contenido = $alumno AND id_profesorcursogrupo = $materia;
+			   		UPDATE blog SET file2='$nombre.$tipo' 
+					WHERE id_blog = $alumno AND id_profesorcursogrupo = $materia;
 			   		");
 			   	$update2->execute();
 				#print "ARCHIVO GUARDADO";
@@ -145,7 +165,7 @@
 		$nombre = "$alumno-3";
 		$limite = 20480 *1024;
 
-		$ruta = "../../upload/contenido/$materia/$alumno/";
+		$ruta = "../../upload/blog/$materia/$alumno/";
 
 
 		$extensiones = array('pdf','doc','docx','xlsx','xls','txt','pptx','ppt','pub','jpg','jpeg','gif','png','ai','svg','git','psd','raw','mp4','m4v','mov','mpg','mpeg','swf','zip','rar','mp3','wav','opus','PDF','DOC','DOCX','XLSX','XLS','TXT','PPTX','PPT','PUB','JPG','JPEG','GIF','PNG','AI','SVG','GIT','PSD','RAW','MP4','M4V','MOV','MPG','MPEG','SWF','ZIP','RAR','MP3','WAV','OPUS','Pdf','Doc','Docx','Xlsx','Xls','Txt','Pptx','Ppt','Pub','Jpg','Jpeg','Gif','Png','Ai','Svg','Git','Psd','Raw','Mp4','M4V','Mov','Mpg','Mpeg','Swf','Zip','Rar','Mp3','Wav','Opus');
@@ -162,8 +182,8 @@
 			}
 			if (move_uploaded_file($tmp, $ruta.$nombre.".".$tipo)) {
 				$update3 = $myPDO2->prepare("
-			   		UPDATE contenido SET file3='$nombre.$tipo' 
-					WHERE id_contenido = $alumno AND id_profesorcursogrupo = $materia;
+			   		UPDATE blog SET file3='$nombre.$tipo' 
+					WHERE id_blog = $alumno AND id_profesorcursogrupo = $materia;
 			   		");
 			   	$update3->execute();
 				#print "ARCHIVO GUARDADO";
@@ -181,7 +201,7 @@
 		$tip = explode(".", $_FILES['file4']['name']);
 		$tipo = end($tip);
 		$nombre = "$alumno-4";
-		$ruta = "../../upload/contenido/$materia/$alumno/";
+		$ruta = "../../upload/blog/$materia/$alumno/";
 		$limite = 20480 *1024;
 
 		
@@ -201,8 +221,8 @@
 			}
 			if (move_uploaded_file($tmp, $ruta.$nombre.".".$tipo)) {
 				$update4 = $myPDO2->prepare("
-			   		UPDATE contenido SET file4='$nombre.$tipo' 
-					WHERE id_contenido = $alumno AND id_profesorcursogrupo = $materia;
+			   		UPDATE blog SET file4='$nombre.$tipo' 
+					WHERE id_blog = $alumno AND id_profesorcursogrupo = $materia;
 			   		");
 			   	$update4->execute();
 				#print "ARCHIVO GUARDADO";
@@ -220,24 +240,13 @@
 
 
 
-
-
 	}
 
-	if ($inser) {
-		header('location: ../../views/Contenido/contenido.php?mat='.$materia.'&gu=t');
-	} else {
-		header('location: ../../views/Contenido/contenido.php?mat='.$materia.'&gu=f');
-	}
-	
+	header('location: ../../views/Blog/blog.php?mat='.$materia);
 	
 
 
 
 
 
-
-
-
-
-?>
+ ?>

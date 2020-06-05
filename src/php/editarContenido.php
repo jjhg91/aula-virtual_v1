@@ -1,7 +1,7 @@
 <?php 
 	require_once('conn.php');
 	
-
+	$id = (int)$_POST['id'];
 	$materia = (int)$_POST['materia'];
 	$numero = (int)$_POST['numero'];
 	$contenido = nl2br($_POST['message']);
@@ -20,8 +20,20 @@
 		$contenido =  addslashes($contenido);
 
 		$inser = $myPDO2->prepare("
-			INSERT INTO contenido(id_profesorcursogrupo, numero, descripcion,nlink1,nlink2,nlink3,nlink4,link1,link2,link3,link4)
-			VALUES($materia, $numero, '$contenido','$nlink1','$nlink2','$nlink3','$nlink4','$link1','$link2','$link3','$link4')
+
+			UPDATE contenido SET 
+			id_profesorcursogrupo = $materia,
+			numero = $numero,
+			descripcion = '$contenido',
+			nlink1 = '$nlink1',
+			nlink2 = '$nlink2',
+			nlink3 = '$nlink3',
+			nlink4 = '$nlink4',
+			link1 = '$link1',
+			link2 = '$link2',
+			link3 = '$link3',
+			link4 = '$link4'
+			WHERE id_contenido = $id;
 			");
 		$inser->execute();
 

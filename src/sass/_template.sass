@@ -8,6 +8,12 @@ $fc-1: rgb(59,64,148)
 $fc-2: rgb(160,0,43)
 $fc-3: rgb(255,255,255)
 
+@font-face 
+	font-family: 'Roboto'
+	src: url('../fuente/Roboto/Roboto-Regular.ttf') format("truetype")
+
+*
+	font-family: 'Roboto'
 
 div.enlaces
 	display: block
@@ -101,10 +107,11 @@ div.enlaces
 					border-radius: 5px
 					cursor: pointer
 					color: $fc-3
-					font-size: 1.2rem
+					font-size: 1rem
 				div
 					h4
 						color: $fc-3
+						font-size: 1.4em
 						&.grande
 							display: inline-block
 						&.chico
@@ -116,6 +123,7 @@ div.enlaces
 					padding: 10px 20px
 					background: rgba(0,0,0,0.2)
 					border-radius: 5px
+					font-size: 0.9em
 
 
 @mixin Navbar
@@ -223,7 +231,7 @@ div.enlaces
 							text-align: center !important
 
 
-@media (max-width: 600px)
+@media (max-width: 800px)
 	body
 		header
 			div.padre

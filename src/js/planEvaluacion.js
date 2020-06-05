@@ -27,7 +27,7 @@ $(document).ready(main);
 		var valor = $('#valor_evaluacion').val();
 		var semana = $('#semana_evaluacion').val();
 		var descripcion = $('#descripcion_evaluacion').val();
-		var t = "hola";
+		var t = "";
 
 		
 		if(tipo == 1){

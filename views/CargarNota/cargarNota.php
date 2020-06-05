@@ -12,7 +12,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+
+	<link rel="icon" type="image/png" href="../../media/logo.png" />
+	<title>IUTJMC - Cargar Notas</title>
 
 
 	<!-- CUSTOM CSS -->

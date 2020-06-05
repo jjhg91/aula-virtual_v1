@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("../fuente/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+* {
+  font-family: "Roboto";
+}
+
 div.enlaces {
   display: block;
 }
@@ -24,7 +32,7 @@ div.enlaces a:hover {
     text-align: center !important;
   }
 }
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   body header div.padre div h4.grande {
     display: none !important;
   }

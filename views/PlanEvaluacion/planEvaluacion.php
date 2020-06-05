@@ -11,7 +11,11 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	
+	<link rel="icon" type="image/png" href="../../media/logo.png" />
+	<title>IUTJMC - Plan de Evaluacion</title>
+
+	
 
 
 	<!-- CUSTOM CSS -->
@@ -71,7 +75,8 @@
 					<?php if($_SESSION['user'] == 'profesor'): ?>
 					<div class="titulo_der">
 						<div class="enlaces">
-							<a href="../../src/php/eliminarPlan.php?mat=<?= $prof ?>&plan=<?= $plan[0] ?>"><span class="icon-bin"></span></a>
+							<a title="Editar" href="#ModalEditar<?= $plan[0] ?>" ><span class="icon-pencil"></span></a>
+							<a title="Eliminar" href="../../src/php/eliminarPlan.php?mat=<?= $prof ?>&plan=<?= $plan[0] ?>" ><span class="icon-bin"></span></a>
 						</div>
 					</div>
 					<?php endif; ?>
@@ -108,6 +113,113 @@
 					<br>
 					<br>
 					<p><strong>Descripcion: </strong><?= $plan[5] ?></p>
+					
+
+				<?php if ($_SESSION['user'] === 'profesor'): ?>
+				<!-- MODAL EDITAR PLAN DE EVALUACION -->
+					<div id="ModalEditar<?= $plan[0] ?>" class="editar">
+
+						<form  method="post" action="../../src/php/editarPlanEvaluacion.php">
+							
+							<div class="grupo">
+								<label for="tipo">Tipo de evaluacion</label>	
+								<select name="tipo" class="tipo">
+									
+									<?php foreach ($tipos as $tipo): ?>
+									
+										<?php if ($tipo[1] == $plan[2]): ?>
+											<option value="<?= $tipo[0]; ?>" selected="true" >
+	                                 	<?= $tipo[1]; ?>
+	                                 		</option>
+										
+										<?php else: ?>
+	                                 	<option value="<?= $tipo[0]; ?> ">
+	                                 		<?= $tipo[1]; ?>
+	                                 	</option>
+	                                
+	                                 	<?php endif ?>
+	                                
+	                                <?php endforeach; ?>
+								
+								</select>
+							</div>
+							
+							
+							
+							<div class="grupo">
+							
+								<label for="otros">Otros tipo de evaluacion </label>
+								<input name="otros" type="text" value="<?= $plan[7] ?> ">
+							</div>
+							
+							
+							
+							<div class="grupo">
+								<label for="valor">Valor de evaluacion</label>
+								<select name="valor">
+
+									<?php foreach ($valores as $valor): ?>
+
+										<?php if ($valor[1] == $plan[3]): ?>
+										<option value="<?= $valor[0]; ?>" selected="true">
+		                                	<?= $valor[1]; ?> %
+		                                </option>
+										<?php else: ?>
+										<option value="<?= $valor[0]; ?> ">
+		                                	<?= $valor[1]; ?> %
+		                                </option>
+										<?php endif ?>
+
+	                             
+	                                <?php endforeach; ?>
+								
+								</select>
+							</div>
+							
+							<div class="grupo">
+								<label for="semana">Semana de la evaluacion</label>
+								<select name="semana">
+									
+									<?php foreach ($semanas as $semana): ?>
+										
+										<?php if ($semana[1] == $plan[4]): ?>
+										<option value="<?= $semana[0]; ?>" selected="true">
+		                                	<?= $semana[1]; ?>
+		                                </option>
+										<?php else: ?>
+										<option value="<?= $semana[0]; ?> ">
+		                                	<?= $semana[1]; ?>
+		                                </option>
+										<?php endif ?>
+	                                
+	                                <?php endforeach; ?>
+
+								</select>	
+							</div>
+
+							<div class="grupo">
+								<textarea name="descripcion" cols="20" rows="10" placeholder="Descripcion de la evaluacion"><?= $plan[5] ?></textarea>
+							</div>
+
+							<div class="grupo_oculto">
+								<input type="text" name="mat" value="<?= $_GET['mat'] ?>"style="display: none;">
+								<input type="text" name="plan" value="<?= $plan[0] ?>"style="display: none;">
+							</div>
+
+							<div class="botones">
+								<button type="submit">Guardar</button>
+
+								<a class="item close" href="#close" class="cerrar" >Cancelar</a>
+							</div>
+
+						</form>
+							
+						</div>
+				<!-- /MODAL EDITAR PLAN DE EVALUACION -->
+				<?php endif ?>
+
+
+
 				</div>
 			</section>
 			<?php endforeach; ?>
@@ -119,7 +231,7 @@
 					<h3>Cargar Plan de Evaluación</h3>
 				</div>
 				<div class="contenido">
-					<form  method="post" id="agregar_plan_evaluacion" id="agregar_plan_evaluacion" 	action="../../src/php/cargarplan.php">
+					<form  method="post" id="agregar_plan_evaluacion" 	action="../../src/php/cargarplan.php">
 						<div class="grupo">
 							<label for="tipo">Tipo de evaluacion</label>	
 							<select name="tipo" id="tipo_evaluacion" class="tipo">

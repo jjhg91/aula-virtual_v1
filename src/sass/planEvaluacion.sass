@@ -30,6 +30,49 @@ body
 					text-align: right
 			div.contenido
 				padding: 20px 0px
+				div.editar
+					margin-top: 40px
+					height: 0px
+					z-index: 9999
+					opacity: 0
+					pointer-events: none
+					
+					form 
+						display: flex
+						flex-direction: column
+						align-items: center 
+						padding: 0px 20px 
+						div
+							width: 100%
+							margin-top: 20px
+						input 
+							height: 30px
+							padding-left: 10px  
+							background-color: $bg-3
+							border-radius: 5px
+							border: none
+							width: 100%
+						textarea, select
+							width: 100%
+							padding: 10px 
+							background-color: $bg-3
+							border-radius: 5px
+							border: none
+						input[type=file]
+							margin-top: 20px 
+						button, a.cerrar
+							margin-top: 20px 
+							@include btn-t
+						a.close
+							@include btn-f
+							text-decoration: none
+							color: black
+							&:active
+							color: black
+					&:target
+						height: auto
+						opacity: 1
+						pointer-events: auto
 		section.section_agregar
 			div.contenido
 				form 

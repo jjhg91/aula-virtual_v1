@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("../fuente/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+* {
+  font-family: "Roboto";
+}
+
 div.enlaces {
   display: block;
 }
@@ -24,7 +32,7 @@ div.enlaces a:hover {
     text-align: center !important;
   }
 }
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   body header div.padre div h4.grande {
     display: none !important;
   }
@@ -77,10 +85,11 @@ body header div.padre button.menuPadre {
   border-radius: 5px;
   cursor: pointer;
   color: white;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 body header div.padre div h4 {
   color: white;
+  font-size: 1.4em;
 }
 body header div.padre div h4.grande {
   display: inline-block;
@@ -95,6 +104,7 @@ body header div.padre a {
   padding: 10px 20px;
   background: rgba(0, 0, 0, 0.2);
   border-radius: 5px;
+  font-size: 0.9em;
 }
 
 body div.contenido nav {
@@ -230,6 +240,69 @@ body main section div.titulo div.titulo_der {
 }
 body main section div.contenido {
   padding: 20px 0px;
+}
+body main section div.contenido div.editar {
+  margin-top: 40px;
+  height: 0px;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+}
+body main section div.contenido div.editar form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 20px;
+}
+body main section div.contenido div.editar form div {
+  width: 100%;
+  margin-top: 20px;
+}
+body main section div.contenido div.editar form input {
+  height: 30px;
+  padding-left: 10px;
+  background-color: #e8e8e8;
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+}
+body main section div.contenido div.editar form input[type=text] {
+  margin-bottom: 10px;
+}
+body main section div.contenido div.editar form textarea, body main section div.contenido div.editar form select {
+  width: 100%;
+  padding: 10px;
+  background-color: #e8e8e8;
+  border-radius: 5px;
+  border: none;
+}
+body main section div.contenido div.editar form input[type=file] {
+  margin-top: 5px;
+}
+body main section div.contenido div.editar form button, body main section div.contenido div.editar form a.cerrar {
+  margin-top: 20px;
+  padding: 10px 30px 10px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #5f77ad;
+  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.3);
+}
+body main section div.contenido div.editar form a.close {
+  padding: 10px 30px 10px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #ff4a4a;
+  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+  color: black;
+  color: black;
+}
+body main section div.contenido div.editar:target {
+  height: auto;
+  opacity: 1;
+  pointer-events: auto;
 }
 body main section.section_agregar div.contenido form {
   display: flex;

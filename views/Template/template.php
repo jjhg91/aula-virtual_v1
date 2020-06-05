@@ -23,7 +23,11 @@
 	EL BOTON DEL NAV, EL NOMBRE Y EL BOTON SALIR -->
 	<header>
 		<div class="padre">
+			
 			<button class="menuPadre"><span class="icon-menu"></span></button>
+				
+			
+			
 			<div>
 
 				<h4 class="grande">Instituto Universitario de Tecnología José María Carreño</h4>
@@ -51,9 +55,9 @@
 
 			<!-- prueba -->
 			<?php if($_SESSION['genero'] == 1): ?>
-			<img src="../../media/h.png" alt="...">
+			<img src="../../media/h.png" alt="..." >
 			<?php else: ?>
-			<img src="../../media/m.png" alt="...">
+			<img src="../../media/m.png" alt="..." >
 			<?php endif; ?>
 			<!-- prueba -->
 

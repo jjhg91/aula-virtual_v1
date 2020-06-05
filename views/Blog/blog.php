@@ -11,7 +11,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+
+	<link rel="icon" type="image/png" href="../../media/logo.png" />
+	<title>IUTJMC - Blog</title>
 
 
 	<!-- CUSTOM CSS -->
@@ -65,14 +67,16 @@
 						<h4><?= ucfirst($post[4]) ?></h4>
 						<span><small><small>Fecha: <?= $post[2] ?></small></small></span>
 					</div>
+
 					<?php if ($_SESSION['user'] == 'profesor'): ?>
 					<div class="titulo_der">
 						<div class="enlaces">
-							<a href=""><span class="icon-pencil"></span></a>
-							<a href="../../src/php/eliminarBlog.php?mat=<?= $prof ?>&blog=<?= $post[0] ?>"><span class="icon-bin"></span></a>
+							<a title="Editar" href="#ModalEditar<?= $post[0] ?>"><span class="icon-pencil"></span></a>
+							<a title="Eliminar" href="../../src/php/eliminarBlog.php?mat=<?= $prof ?>&blog=<?= $post[0] ?>"><span class="icon-bin"></span></a>
 						</div>
 					</div>
 					<?php endif ?>
+					
 				</div>
 				<div class="contenido">
 					<p> <?= $post[3] ?> </p>
@@ -160,7 +164,161 @@
 						<br>
 						<?php endif ?>
 
-					</div> 
+					</div>
+
+
+
+				<?php if ($_SESSION['user'] === 'profesor'): ?>
+				<!-- MODAL EDITAR BLOG -->
+					<div id="ModalEditar<?= $post[0] ?>" class="editar">
+						
+
+						<form  method="post" enctype="multipart/form-data" action="../../src/php/editarBlog.php">
+							<div class="grupo">
+								<label for="title">Titulo</label>
+								<input name="title" id="title" type="text" placeholder="Titulo" value="<?= ucfirst($post[4]) ?>">
+							</div>
+							<div class="grupo">
+								<textarea name="message" id="message" cols="30" rows="10" placeholder="Contenido"><?= $post[3] ?></textarea>
+							</div>
+		
+							<div class="grupo_oculto">
+								<input type="text" name="materia" value="<?= $prof ?>" style="display: none;">
+								<input type="text" name="post" value="<?= $post[0] ?>" style="display: none;">
+							</div>
+
+
+
+
+
+
+
+
+							<div class="grupo">
+								<br>
+								<br>
+								<h3>Links</h3>	
+							</div>
+							<div class="grupo">
+								<h4>Link 1</h4>
+								<label for="nlink1">Nombre</label>
+								<input name="nlink1"  type="text" placeholder="Nombre del link 1" value="<?= $post[9] ?>">
+								<label for="link1">Link</label>
+								<input name="link1" type="text" placeholder="Link 1" value="<?= $post[13] ?>">
+							</div>
+							
+							<div class="grupo">
+								<h4>Link 2</h4>
+								
+								<label for="nlink2">Nombre</label>
+								<input name="nlink2" type="text" placeholder="Nombre del link 2" value="<?= $post[10] ?>">
+								<label for="link2">Link</label>
+								<input name="link2" type="text" placeholder="Link 2" value="<?= $post[14] ?>">
+							</div>
+
+							<div class="grupo">
+								<h4>Link 3</h4>
+								
+								<label for="nlink3">Nombre</label>
+								<input name="nlink3" type="text" placeholder="Nombre del link 3" value="<?= $post[11] ?>">
+								<label for="link3">Link</label>
+								<input name="link3" type="text" placeholder="Link 3" value="<?= $post[15] ?>">
+							</div>
+
+							<div class="grupo">
+								<h4>Link 4</h4>
+								
+								<label for="nlink4">Nombre</label>
+								<input name="nlink4" type="text" placeholder="Nombre del link 4" value="<?= $post[12] ?>">
+								<label for="link4">Link</label>
+								<input name="link4" type="text" placeholder="Link 4" value="<?= $post[16] ?>">
+							</div>
+							
+							<div class="grupo">
+								<br>
+								<br>
+								<h3>Archivos</h3>
+							</div>
+
+
+
+
+
+
+
+
+
+
+							<div class="grupo">
+								<?php if ($post[5]): ?>
+								<a href="../../upload/blog/<?= $post[1]?>/<?= $post[0] ?>/<?= $post[5] ?>" download>Material 1</a>
+								<br>
+								<?php else: ?>
+								<p>Material 1 - SIN CARGAR</p>
+								
+								<?php endif ?>
+								<input name="file1" type="file">
+							</div>
+
+							<div class="grupo">
+								<?php if ($post[6]): ?>
+								<a href="../../upload/blog/<?= $post[1]?>/<?= $post[0] ?>/<?= $post[6] ?>" download>Material 2</a>
+								<br>
+								<?php else: ?>
+								<p>Material 2 - SIN CARGAR</p>
+								
+								<?php endif ?>
+								<input name="file2" type="file">
+							</div>
+
+							<div class="grupo">
+								<?php if ($post[7]): ?>
+								<a href="../../upload/blog/<?= $post[1]?>/<?= $post[0] ?>/<?= $post[7] ?>" download>Material 3</a>
+								<br>
+								<?php else: ?>
+								<p>Material 3 - SIN CARGAR</p>
+								
+								<?php endif ?>
+								<input name="file3" type="file">
+							</div>
+
+							<div class="grupo">
+								<?php if ($post[8]): ?>
+								<a href="../../upload/blog/<?= $post[1]?>/<?= $post[0] ?>/<?= $post[8] ?>" download>Material 4</a>
+								<br>
+								<?php else: ?>
+								<p>Material 4 - SIN CARGAR</p>
+								
+								<?php endif ?>
+								<input name="file4" type="file">
+							</div>
+							
+							
+
+
+
+
+							
+							<div class="botones">
+								<button class="item" type="submit" >Guardar</button>
+								<a class="item close" href="#close" class="cerrar" >Cancelar</a>
+							</div>
+							
+
+
+
+						</form>				
+												
+							
+					</div>
+				<!-- /MODAL EDITAR BLOG -->
+				<?php endif ?>
+
+
+
+
+
+
 				</div>
 			</section>	
 			<?php endforeach; ?>
