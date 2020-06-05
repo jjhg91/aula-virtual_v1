@@ -291,24 +291,35 @@
 						<div class="grupo">
 							<br>
 							<br>
-							<h3>Links</h3>	
+							<h3>Links</h3>
+							<br>
+							<p>Para agregar un link tendrás que colocar un nombre en el campo (Nombre link) y luego colocar el link en el campo de abajo (Link) colocar el link. ejemplo</p>
+							<br>
+							<p>Nombre Link = Pagina Web del Instituto</p>
+							<p>Link = https://iutjmc.com.ve</p>
+							<br>
+							<p>Aparecerá de esta manera a los alumnos <a href="https://iutjmc">Pagina Web del Instituto</a></p>	
 						</div>
 						<div class="grupo">
+							
 							<input name="nlink1"  type="text" placeholder="Nombre del link 1">
 							<input name="link1" type="text" placeholder="Link 1">
 						</div>
 						
 						<div class="grupo">
+							
 							<input name="nlink2" type="text" placeholder="Nombre del link 2">
 							<input name="link2" type="text" placeholder="Link 2">
 						</div>
 
 						<div class="grupo">
+							
 							<input name="nlink3" type="text" placeholder="Nombre del link 3">
 							<input name="link3" type="text" placeholder="Link 3">
 						</div>
 
 						<div class="grupo">
+							
 							<input name="nlink4" type="text" placeholder="Nombre del link 4">
 							<input name="link4" type="text" placeholder="Link 4">
 						</div>
