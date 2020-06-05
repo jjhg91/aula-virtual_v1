@@ -298,7 +298,7 @@
 							<p>Nombre Link = Pagina Web del Instituto</p>
 							<p>Link = https://iutjmc.com.ve</p>
 							<br>
-							<p>Aparecerá de esta manera a los alumnos <a href="https://iutjmc">Pagina Web del Instituto</a></p>	
+							<p>Aparecerá de esta manera a los alumnos <a href="https://iutjmc.com.ve">Pagina Web del Instituto</a></p>	
 						</div>
 						<div class="grupo">
 							
