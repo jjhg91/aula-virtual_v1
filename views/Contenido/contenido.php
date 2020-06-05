@@ -274,7 +274,7 @@
 				<div class="contenido">
 					<form name="agregar_contenido" method="post"  enctype="multipart/form-data" action="../../src/php/cargarContenido.php">
 						<div class="grupo">
-							<label for="numero">Objetivo</label>
+							<label for="numero">Numero de Objetivo</label>
 							<input id="numero" name="numero" type="number" placeholder="Numero de Objetivo">	
 						</div>
 						
