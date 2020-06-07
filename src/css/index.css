@@ -46,25 +46,33 @@ div.enlaces a:hover {
 }
 
 body {
-  background-image: url(../../media/logo.png);
-  background-size: 200px;
-  background-position: 0px -60px;
+  background-image: url(../../media/fondo.jpg);
+  background-size: 100% 100%;
 }
 body div.opacidad {
   height: 100vh;
-  background-color: rgba(232, 232, 232, 0.85);
+  background-color: rgba(232, 232, 232, 0.5);
 }
 body div.opacidad main {
   display: flex;
-  padding: 50px 0;
   width: 100%;
+  height: 100vh;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
+}
+body div.opacidad main img {
+  margin-right: 100px;
+  min-height: 200px;
+  min-width: 200px;
+  text-align: center;
+  justify-content: center;
 }
 body div.opacidad main section {
+  text-align: center;
+  justify-content: center;
   background: white;
-  padding: 30px;
+  padding: 20px;
   width: 90%;
   max-width: 500px;
   min-height: 400px;
@@ -163,4 +171,16 @@ body div.opacidad main section form div.group_button button {
 }
 body div.opacidad main section form div.group_button button:hover {
   background-color: rgba(59, 64, 148, 0.86);
+}
+
+@media (max-width: 900px) {
+  body div.opacidad main {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+  }
+  body div.opacidad main img {
+    margin: 30px 0;
+  }
 }
