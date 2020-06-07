@@ -276,9 +276,6 @@ body main section div.contenido div.editar form textarea, body main section div.
   border-radius: 5px;
   border: none;
 }
-body main section div.contenido div.editar form input[type=file] {
-  margin-top: 5px;
-}
 body main section div.contenido div.editar form button, body main section div.contenido div.editar form a.cerrar {
   margin-top: 20px;
   padding: 10px 30px 10px 30px;
@@ -312,10 +309,10 @@ body main section.section_agregar div.contenido form {
 }
 body main section.section_agregar div.contenido form div.grupo {
   width: 100%;
+  padding-top: 20px;
 }
 body main section.section_agregar div.contenido form div.grupo input, body main section.section_agregar div.contenido form div.grupo textarea {
   width: 100%;
-  margin-top: 20px;
   border: none;
   background-color: #e8e8e8;
   border-radius: 5px;

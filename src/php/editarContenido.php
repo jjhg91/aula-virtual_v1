@@ -4,7 +4,7 @@
 	$id = (int)$_POST['id'];
 	$materia = (int)$_POST['materia'];
 	$numero = (int)$_POST['numero'];
-	$contenido = nl2br($_POST['message']);
+	$contenido = $_POST['message'];
 	$nlink1 = $_POST['nlink1'];
 	$nlink2 = $_POST['nlink2'];
 	$nlink3 = $_POST['nlink3'];
@@ -14,6 +14,7 @@
 	$link2 = $_POST['link2'];
 	$link3 = $_POST['link3'];
 	$link4 = $_POST['link4'];
+
 
 	if($materia AND $numero AND $contenido AND strlen($contenido) <= 10000 ){
 		$contenido = stripslashes($contenido);

@@ -112,7 +112,7 @@
 					
 					<br>
 					<br>
-					<p><strong>Descripcion: </strong><?= $plan[5] ?></p>
+					<p><strong>Descripcion: </strong><?= nl2br($plan[5]) ?></p>
 					
 
 				<?php if ($_SESSION['user'] === 'profesor'): ?>

@@ -6,6 +6,7 @@
 	$sel = $myPDO2->prepare("
 		SELECT * FROM contenido
 		WHERE id_profesorcursogrupo = $prof
+		ORDER BY numero ASC
 		");
 	$sel->execute();
 	$contenidos = $sel->fetchAll();

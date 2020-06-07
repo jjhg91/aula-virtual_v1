@@ -6,6 +6,7 @@
 	$sel = $myPDO2->prepare("
 		SELECT * FROM foro
 		WHERE id_profesorcursogrupo = $prof
+		ORDER BY fecha ASC
 		");
 	$sel->execute();
 	$posts = $sel->fetchAll();

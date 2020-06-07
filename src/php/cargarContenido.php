@@ -4,7 +4,7 @@
 
 	$materia = (int)$_POST['materia'];
 	$numero = (int)$_POST['numero'];
-	$contenido = nl2br($_POST['message']);
+	$contenido = $_POST['message'];
 	$nlink1 = $_POST['nlink1'];
 	$nlink2 = $_POST['nlink2'];
 	$nlink3 = $_POST['nlink3'];

@@ -26,7 +26,7 @@ $(document).ready(main);
 		var tipo = $('#tipo_evaluacion').val();
 		var valor = $('#valor_evaluacion').val();
 		var semana = $('#semana_evaluacion').val();
-		var descripcion = $('#descripcion_evaluacion').val();
+		var descripcion = $('#descripcion_evaluacion').val().split("\n").join("<br>");
 		var t = "";
 
 		
@@ -52,7 +52,7 @@ $(document).ready(main);
 		$('#semana').text(semana);
 		$('#valor').text(valor*5+"%");
 		$('#puntos').text(20*((valor*5)*0.01)+"pts" );
-		$('#descripcion').text(descripcion);
+		$('#descripcion').append(descripcion);
 
 
 

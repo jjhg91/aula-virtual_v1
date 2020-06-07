@@ -40,6 +40,8 @@
 
 			<?php TarjetaInformativa('CONTENIDO'); ?>
 			
+		<!-- MOSTAR SI CONTENIDO NO EXISTE -->
+
 			<?php if (empty($contenidos)): ?>
 			<section>
 				<div class="contenido">
@@ -53,7 +55,12 @@
 				</div>
 			</section>			
 			<?php endif ?>
+
+		<!-- /MOSTART SI CONTENIDO NO EXISTE -->
 			
+
+
+		<!-- /MOSTART SI CONTENIDO -->
 			<?php foreach ($contenidos as $contenido): ?>
 			<section class="contenido">
 				<div class="titulo">
@@ -73,9 +80,9 @@
 				
 				</div>
 				<div class="contenido">
-				 	<p> <?= ucfirst($contenido[3]) ?> </p>
+				 	<p> <?= nl2br(ucfirst($contenido[3])) ?> </p>
 
-
+				<!-- MOSTAR LINKS -->
 				 	<div class="trabajos">
 						<?php if ($contenido[8] or $contenido[9] or $contenido[10] or $contenido[11]): ?>
 						<br>
@@ -108,8 +115,9 @@
 						<br>
 						<?php endif ?>
 					</div>
+				<!-- /MOSTAR LINKS -->
 
-
+				<!-- MOSTART ARCHIVOS  -->
 				 	<div class="trabajos">
 						<?php if ($contenido[4] or $contenido[5] or $contenido[6] or $contenido[7]): ?>
 						<br>
@@ -142,67 +150,94 @@
 						<br>
 						<?php endif ?>
 					</div>
+				<!-- /MOSTART ARCHIVOS  -->
+
+
+
+
+			<!-- MODAL EDITAR CONTENIDO -->
 
 				<?php if ($_SESSION['user'] === 'profesor'): ?>
-				<!-- MODAL EDITAR CONTENIDO -->
 					<div id="ModalEditar<?= $contenido[0] ?>" class="editar">
 						<form name="agregar_contenido" method="post"  enctype="multipart/form-data" action="../../src/php/editarContenido.php">
 							<div class="grupo">
 								<label for="numero">Numero de Objetivo</label>
-								<input id="numero" name="numero" type="number" placeholder="Numero de Objetivo" value="<?= $contenido[2] ?>">	
+								<input  name="numero" type="number" placeholder="Numero de Objetivo" value="<?= $contenido[2] ?>">	
 							</div>
 							
 							<div class="grupo">
-								<textarea name="message" id="message" cols="20" rows="10" placeholder="Contenido"><?= ucfirst($contenido[3]) ?></textarea>
+								<textarea name="message"  cols="20" rows="10" placeholder="Contenido"><?= ucfirst($contenido[3]) ?></textarea>
 							</div>
 
 							<div class="grupo_oculto">
-	                      		<input type="text" name="materia" value="<?= $prof ?>" style="display: none;">
-	                      		<input type="text" name="id" value="<?= $contenido[0] ?>" style="display: none;">
+	                      		<input name="materia" type="text"  value="<?= $prof ?>" style="display: none;">
+	                      		<input name="id" type="text"  value="<?= $contenido[0] ?>" style="display: none;">
 
 	                    	</div>
 							
+						<!-- EDITAR LINKS -->
+							<div class="grupo">
+								<br>
+								<br>
+								<h3>Links</h3>
+								<br>	
+							</div>
 
 							<div class="grupo">
-								<br>
-								<br>
-								<h3>LINKS</h3>	
-							</div>
-							<div class="grupo">
-								<h4>Link 1</h4>
-								<label for="nlink1">Nombre</label>
-								<input name="nlink1"  type="text" placeholder="Nombre del link 1" value="<?= $contenido[8] ?>">
-								<label for="link1">Link</label>
-								<input name="link1" type="text" placeholder="Link 1" value="<?= $contenido[12] ?>">
+								<span>Link 1</span>
+								<div class="grupo">
+									<label for="nlink1">Nombre del Link</label>
+									<input name="nlink1"  type="text" placeholder="Nombre del link 1" value="<?= $contenido[8] ?>">
+								</div>
+								<div class="grupo">
+									<label for="link1">Url del Link</label>
+									<input name="link1" type="text" placeholder="Url Link 1" value="<?= $contenido[12] ?>">
+								</div>		
 							</div>
 							
 							<div class="grupo">
-								<h4>Link 2</h4>
-								
-								<label for="nlink2">Nombre</label>
-								<input name="nlink2" type="text" placeholder="Nombre del link 2" value="<?= $contenido[9] ?>">
-								<label for="link2">Link</label>
-								<input name="link2" type="text" placeholder="Link 2" value="<?= $contenido[13] ?>">
+								<span>Link 2</span>
+								<div class="grupo">
+									<label for="nlink2">Nombre del Link</label>
+									<input name="nlink2" type="text" placeholder="Nombre del link 2" value="<?= $contenido[9] ?>">
+								</div>
+								<div class="grupo">
+									<label for="link2">Url del Link</label>
+									<input name="link2" type="text" placeholder="Url del Link 2" value="<?= $contenido[13] ?>">
+								</div>
 							</div>
 
 							<div class="grupo">
-								<h4>Link 3</h4>
+								<span>Link 3</span>
+								<div class="grupo">
+									<label for="nlink3">Nombre del Link</label>
+									<input name="nlink3" type="text" placeholder="Nombre del link 3" value="<?= $contenido[10] ?>">
+								</div>
+								<div class="grupo">
+									<label for="link3">Url del Link</label>
+									<input name="link3" type="text" placeholder="Url del Link 3" value="<?= $contenido[14] ?>">
+								</div>
 								
-								<label for="nlink3">Nombre</label>
-								<input name="nlink3" type="text" placeholder="Nombre del link 3" value="<?= $contenido[10] ?>">
-								<label for="link3">Link</label>
-								<input name="link3" type="text" placeholder="Link 3" value="<?= $contenido[14] ?>">
+								
 							</div>
 
 							<div class="grupo">
-								<h4>Link 4</h4>
-								
-								<label for="nlink4">Nombre</label>
+								<span>Link 4</span>
+								<div class="grupo">
+									<label for="nlink4">Nombre del Link</label>
 								<input name="nlink4" type="text" placeholder="Nombre del link 4" value="<?= $contenido[11] ?>">
-								<label for="link4">Link</label>
-								<input name="link4" type="text" placeholder="Link 4" value="<?= $contenido[15] ?>">
+								</div>
+								<div class="grupo">
+									<label for="link4">Url del Link</label>
+								<input name="link4" type="text" placeholder="Url del Link 4" value="<?= $contenido[15] ?>">
+								</div>
+								
+								
+								
 							</div>
-							
+						<!-- /EDITAR LINKS -->
+						
+						<!-- EDITAR ARCHIVOS -->
 							<div class="grupo">
 								<br>
 								<br>
@@ -241,6 +276,7 @@
 								<?php endif ?>
 								<input name="file4" type="file">
 							</div>
+						<!-- /EDITAR ARCHIVOS -->
 
 							
 							
@@ -256,8 +292,10 @@
 						
 							
 					</div>
-				<!-- /MODAL EDITAR CONTENIDO-->
+				
 				<?php endif ?>
+			<!-- /MODAL EDITAR CONTENIDO-->
+
 
 
 				</div>
@@ -265,6 +303,11 @@
 			</section>
 			<?php endforeach ?>
 
+		<!-- /MOSTART CONTENIDO -->
+
+
+
+		<!-- AGREGAR NUEVO CONTENIDO -->
 
 			<?php if ($_SESSION['user'] === 'profesor'): ?>
 			<section class="section_agregar">
@@ -279,6 +322,7 @@
 						</div>
 						
 						<div class="grupo">
+							<label for="">Contenido</label>
 							<textarea name="message" id="message" cols="20" rows="10" placeholder="Contenido"></textarea>
 						</div>
 
@@ -288,61 +332,119 @@
                     	</div>
 						
 
+
+					<!-- SECCION DE AGREGAR LINKS -->
+
 						<div class="grupo">
 							<br>
 							<br>
 							<h3>Links</h3>
 							<br>
-							<p>Para agregar un link tendrás que colocar un nombre en el campo (Nombre link) y luego colocar el link en el campo de abajo (Link) colocar el link. ejemplo</p>
-							<br>
-							<p>Nombre Link = Pagina Web del Instituto</p>
-							<p>Link = https://iutjmc.com.ve</p>
-							<br>
-							<p>Aparecerá de esta manera a los alumnos <a href="https://iutjmc.com.ve">Pagina Web del Instituto</a></p>	
-						</div>
-						<div class="grupo">
-							
-							<input name="nlink1"  type="text" placeholder="Nombre del link 1">
-							<input name="link1" type="text" placeholder="Link 1">
-						</div>
-						
-						<div class="grupo">
-							
-							<input name="nlink2" type="text" placeholder="Nombre del link 2">
-							<input name="link2" type="text" placeholder="Link 2">
+							<p><small>
+								Para agregar un link tendrás que colocar un nombre en el campo (Nombre link) y luego colocar el link en el campo de abajo (Link) colocar el link. 
+								<br>
+								<br>
+								Ejemplo:
+								
+								<br>
+								Nombre Link = Pagina Web del Instituto
+								<br>
+								Url del Link = https://iutjmc.com.ve
+								<br>
+								<br>
+								Aparecerá de esta manera a los alumnos <a href="https://iutjmc.com.ve">Pagina Web del Instituto</a>
+							</small></p>	
 						</div>
 
 						<div class="grupo">
-							
-							<input name="nlink3" type="text" placeholder="Nombre del link 3">
-							<input name="link3" type="text" placeholder="Link 3">
+							<span>Link 1</span>
+							<div class="grupo">
+								<label for="">Nombre del Link</label>
+								<input id="nlink1" name="nlink1"  type="text" placeholder="Nombre del link 1">
+							</div>
+							<div class="grupo">
+								<label for="">Url del Link</label>
+								<input id="link1" name="link1" type="text" placeholder="Url del Link 1">
+							</div>
+						</div>
+						
+						<div class="grupo">
+							<span>Link 2</span>
+							<div class="grupo">
+								<label for="">Nombre del Link</label>
+								<input id="nlink2" name="nlink2" type="text" placeholder="Nombre del link 2">
+							</div>
+							<div class="grupo">
+								<label for="">Url del Link</label>
+								<input id="link2" name="link2" type="text" placeholder="Url del Link 2">
+							</div>
 						</div>
 
 						<div class="grupo">
+							<span>Link 3</span>
+							<div class="grupo">
+								<label for="">Nombre del Link</label>
+								<input id="nlink3" name="nlink3" type="text" placeholder="Nombre del link 3">
+							</div>
+							<div class="grupo">
+								<label for="">Url del Link</label>
+								<input id="link3" name="link3" type="text" placeholder="Url del Link 3">
+							</div>
 							
-							<input name="nlink4" type="text" placeholder="Nombre del link 4">
-							<input name="link4" type="text" placeholder="Link 4">
 						</div>
+
+						<div class="grupo">
+							<span>Link 4</span>
+							<div class="grupo">
+								<label for="">Nombre del Link</label>
+								<input id="nlink4" name="nlink4" type="text" placeholder="Nombre del link 4">
+							</div>
+							<div class="grupo">
+								<label for="">Url del Link</label>
+								<input id="link4" name="link4" type="text" placeholder="Url del Link 4">
+							</div>
+						</div>
+
+					<!-- /SECCION DE AGREGAR LINKS -->
 						
+
+
+					<!-- SECCION DE AGREGAR ARCHIVOS -->
+
 						<div class="grupo">
 							<br>
 							<br>
 							<h3>Archivos</h3>
 						</div>
-						
 						<div class="grupo">
-
-							<input name="file1" type="file">
-							<input name="file2" type="file">
-							<input name="file3" type="file">
-							<input name="file4" type="file">
+							<div class="grupo">
+								<label for="">Archivo 1</label>
+								<input id="file1" name="file1" type="file">
+							</div>
+							<div class="grupo">
+								<label for="">Archivo 2</label>
+								<input id="file2" name="file2" type="file">
+							</div>
+							<div class="grupo">
+								<label for="">Archivo 3</label>
+								<input id="file3" name="file3" type="file">
+							</div>
+							<div class="grupo">
+								<label for="">Archivo 4</label>
+								<input id="file4" name="file4" type="file">
+							</div>
 						</div>
 
-						
-						
-						<a class="OpenModal OpenModalPreview" href="#OpenModal">Guardar</a>
+					<!-- /SECCION DE AGREGAR ARCHIVOS -->
 
-						<div id="OpenModal" class="Modal">
+						
+						
+						<a id="PreviewBoton" class="OpenModal OpenModalPreview" href="#OpenModal">Guardar</a>
+					
+
+					<!-- SECCION DE PREVIEW MODAL -->
+
+						<div id="OpenModal" class="Modal PreviewModal">
 		
 								<section class="contenido preview">
 									<div class="titulo">
@@ -356,19 +458,44 @@
 									 	<p id="PreviewContenido"></p>
 									</div>
 									
+									<div class="grupo">
+										<br>
+										<br>
+										<h4>Links</h4>
+										
+									</div>
+									
+									<div id="links">
+										
+									</div>
+									
+
+									<div class="grupo">
+										<br>
+										<br>
+										<h4>Archivos</h4>
+										
+									</div>
+									<div id="PreviewArchivos">
+										
+									</div>
+									
 									<div class="botones">
-										<button class="item" type="submit" >Guardar</button>
+										<button id="btnSubmit" class="item" type="submit" disabled="disabled">Guardar</button>
 										<a class="item close" href="#close" class="cerrar" >Cancelar</a>
 									</div>
 									
 								</section>
 
 						</div>
+
+					<!-- /SECCION DE PREVIEW MODAL -->
 						
 					</form>
 				</div>
 			</section>
 			<?php endif; ?>
+		<!-- AGREGAR NUEVO CONTENIDO -->
 		
 		</main>
 

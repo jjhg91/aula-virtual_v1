@@ -79,7 +79,7 @@
 					
 				</div>
 				<div class="contenido">
-					<p> <?= $post[3] ?> </p>
+					<p> <?= nl2br($post[3]); ?> </p>
 
 
 
@@ -167,9 +167,9 @@
 					</div>
 
 
-
-				<?php if ($_SESSION['user'] === 'profesor'): ?>
 				<!-- MODAL EDITAR BLOG -->
+					<?php if ($_SESSION['user'] === 'profesor'): ?>
+				
 					<div id="ModalEditar<?= $post[0] ?>" class="editar">
 						
 
@@ -187,53 +187,64 @@
 								<input type="text" name="post" value="<?= $post[0] ?>" style="display: none;">
 							</div>
 
-
-
-
-
-
-
-
+						<!-- EDITAR LINKS -->
 							<div class="grupo">
 								<br>
 								<br>
-								<h3>Links</h3>	
+								<h3>Links</h3>
+								<br>
 							</div>
 							<div class="grupo">
-								<h4>Link 1</h4>
-								<label for="nlink1">Nombre</label>
-								<input name="nlink1"  type="text" placeholder="Nombre del link 1" value="<?= $post[9] ?>">
-								<label for="link1">Link</label>
-								<input name="link1" type="text" placeholder="Link 1" value="<?= $post[13] ?>">
+								<span>Link 1</span>
+								<div class="grupo">
+									<label for="nlink1">Nombre del Link</label>
+									<input name="nlink1"  type="text" placeholder="Nombre del link 1" value="<?= $post[9] ?>">
+								</div>
+								<div class="grupo">
+									<label for="link1">Url del Link</label>
+									<input name="link1" type="text" placeholder="Url del Link 1" value="<?= $post[13] ?>">
+								</div>
 							</div>
 							
 							<div class="grupo">
-								<h4>Link 2</h4>
-								
-								<label for="nlink2">Nombre</label>
-								<input name="nlink2" type="text" placeholder="Nombre del link 2" value="<?= $post[10] ?>">
-								<label for="link2">Link</label>
-								<input name="link2" type="text" placeholder="Link 2" value="<?= $post[14] ?>">
+								<span>Link 2</span>
+								<div class="grupo">
+									<label for="nlink2">Nombre del Link</label>
+									<input name="nlink2" type="text" placeholder="Nombre del link 2" value="<?= $post[10] ?>">
+								</div>
+								<div class="grupo">
+									<label for="link2">Url del Link</label>
+									<input name="link2" type="text" placeholder="Url del Link 2" value="<?= $post[14] ?>">
+								</div>
 							</div>
 
 							<div class="grupo">
-								<h4>Link 3</h4>
-								
-								<label for="nlink3">Nombre</label>
-								<input name="nlink3" type="text" placeholder="Nombre del link 3" value="<?= $post[11] ?>">
-								<label for="link3">Link</label>
-								<input name="link3" type="text" placeholder="Link 3" value="<?= $post[15] ?>">
+								<span>Link 3</span>
+								<div class="grupo">
+									<label for="nlink3">Nombre del Link</label>
+									<input name="nlink3" type="text" placeholder="Nombre del link 3" value="<?= $post[11] ?>">
+								</div>
+								<div class="grupo">
+									<label for="link3">Url del Link</label>
+									<input name="link3" type="text" placeholder="Url del Link 3" value="<?= $post[15] ?>">
+								</div>
 							</div>
 
 							<div class="grupo">
-								<h4>Link 4</h4>
-								
-								<label for="nlink4">Nombre</label>
-								<input name="nlink4" type="text" placeholder="Nombre del link 4" value="<?= $post[12] ?>">
-								<label for="link4">Link</label>
-								<input name="link4" type="text" placeholder="Link 4" value="<?= $post[16] ?>">
+								<span>Link 4</span>
+								<div class="grupo">
+									<label for="nlink4">Nombre del Link</label>
+									<input name="nlink4" type="text" placeholder="Nombre del link 4" value="<?= $post[12] ?>">
+								</div>
+								<div class="grupo">
+									<label for="link4">Url del Link</label>
+								<input name="link4" type="text" placeholder="Url del Link 4" value="<?= $post[16] ?>">
+								</div>	
 							</div>
+
+						<!-- /EDITAR LINKS -->
 							
+
 							<div class="grupo">
 								<br>
 								<br>
@@ -311,8 +322,9 @@
 												
 							
 					</div>
+				
+					<?php endif ?>
 				<!-- /MODAL EDITAR BLOG -->
-				<?php endif ?>
 
 
 
@@ -323,6 +335,8 @@
 			</section>	
 			<?php endforeach; ?>
 	
+
+		<!-- SECCION AGREGAR CONTENIDO AL BLOG -->
 
 			<?php if ($_SESSION['user'] === 'profesor'): ?>
 			<section class="section_agregar">
@@ -350,63 +364,112 @@
 
 
 
+					<!-- SECCION DE AGREGAR LINKS -->
+
 						<div class="grupo">
 							<br>
 							<br>
 							<h3>Links</h3>
 							<br>
-							<p>Para agregar un link tendrás que colocar un nombre en el campo (Nombre link) y luego colocar el link en el campo de abajo (Link) colocar el link. ejemplo</p>
-							<br>
-							<p>Nombre Link = Pagina Web del Instituto</p>
-							<p>Link = https://iutjmc.com.ve</p>
-							<br>
-							<p>Aparecerá de esta manera a los alumnos <a href="https://iutjmc.com.ve">Pagina Web del Instituto</a></p>	
-						</div>
-						<div class="grupo">
-							<input name="nlink1"  type="text" placeholder="Nombre del link 1">
-							<br>
-							<input name="link1" type="text" placeholder="Link 1">
-						</div>
-						
-						<div class="grupo">
-							<input name="nlink2" type="text" placeholder="Nombre del link 2">
-							<br>
-							<input name="link2" type="text" placeholder="Link 2">
+							<p><small>
+								Para agregar un link tendrás que colocar un nombre en el campo (Nombre link) y luego colocar el link en el campo de abajo (Link) colocar el link. 
+								<br>
+								<br>
+								Ejemplo:
+								
+								<br>
+								Nombre Link = Pagina Web del Instituto
+								<br>
+								Url del Link = https://iutjmc.com.ve
+								<br>
+								<br>
+								Aparecerá de esta manera a los alumnos <a href="https://iutjmc.com.ve">Pagina Web del Instituto</a>
+							</small></p>	
 						</div>
 
 						<div class="grupo">
-							<input name="nlink3" type="text" placeholder="Nombre del link 3">
-							<br>
-							<input name="link3" type="text" placeholder="Link 3">
+							<span>Link 1</span>
+							<div class="grupo">
+								<label for="">Nombre del Link</label>
+								<input id="nlink1" name="nlink1"  type="text" placeholder="Nombre del link 1">
+							</div>
+							<div class="grupo">
+								<label for="">Url del Link</label>
+								<input id="link1" name="link1" type="text" placeholder="Url del Link 1">
+							</div>
+						</div>
+						
+						<div class="grupo">
+							<span>Link 2</span>
+							<div class="grupo">
+								<label for="">Nombre del Link</label>
+								<input id="nlink2" name="nlink2" type="text" placeholder="Nombre del link 2">
+							</div>
+							<div class="grupo">
+								<label for="">Url del Link</label>
+								<input id="link2" name="link2" type="text" placeholder="Url del Link 2">
+							</div>
 						</div>
 
 						<div class="grupo">
-							<input name="nlink4" type="text" placeholder="Nombre del link 4">
-							<br>
-							<input name="link4" type="text" placeholder="Link 4">
+							<span>Link 3</span>
+							<div class="grupo">
+								<label for="">Nombre del Link</label>
+								<input id="nlink3" name="nlink3" type="text" placeholder="Nombre del link 3">
+							</div>
+							<div class="grupo">
+								<label for="">Url del Link</label>
+								<input id="link3" name="link3" type="text" placeholder="Url del Link 3">
+							</div>
+							
 						</div>
-						
+
+						<div class="grupo">
+							<span>Link 4</span>
+							<div class="grupo">
+								<label for="">Nombre del Link</label>
+								<input id="nlink4" name="nlink4" type="text" placeholder="Nombre del link 4">
+							</div>
+							<div class="grupo">
+								<label for="">Url del Link</label>
+								<input id="link4" name="link4" type="text" placeholder="Url del Link 4">
+							</div>
+						</div>
+
+					<!-- /SECCION DE AGREGAR LINKS -->
+
+
+
+
+
+
+					<!-- SECCION DE AGREGAR ARCHIVOS -->
+
 						<div class="grupo">
 							<br>
 							<br>
 							<h3>Archivos</h3>
 						</div>
-
-
-
-
-
-
-
-
-
-
 						<div class="grupo">
-							<input name="file1" type="file">
-							<input name="file2" type="file">
-							<input name="file3" type="file">
-							<input name="file4" type="file">
+							<div class="grupo">
+								<label for="">Archivo 1</label>
+								<input id="file1" name="file1" type="file">
+							</div>
+							<div class="grupo">
+								<label for="">Archivo 2</label>
+								<input id="file2" name="file2" type="file">
+							</div>
+							<div class="grupo">
+								<label for="">Archivo 3</label>
+								<input id="file3" name="file3" type="file">
+							</div>
+							<div class="grupo">
+								<label for="">Archivo 4</label>
+								<input id="file4" name="file4" type="file">
+							</div>
 						</div>
+
+					<!-- /SECCION DE AGREGAR ARCHIVOS -->
 						
 						
 
@@ -414,34 +477,56 @@
 
 
 						<!-- PRUEBA -->
-						<a class="OpenModal OpenModalPreview" href="#OpenPreviewModal">Guardar</a>
+						<a id="PreviewBoton" class="OpenModal OpenModalPreview" href="#OpenPreviewModal">Guardar</a>
 
+
+					<!-- SECCION MODAL PREVISUALISACION -->
+				
 						<div id="OpenPreviewModal" class="PreviewModal">
-		
-			
-
-
-						<section class="preview">
-							<div class="titulo">
-								<div class="titulo_izq">
-									<h4 id="titulo_pre"></h4>
+							<section class="preview">
+								<div class="titulo">
+									<div class="titulo_izq">
+										<h4 id="titulo_pre"></h4>
+									</div>
 								</div>
-							</div>
-							<hr>
-							<div class="contenido">
-								<p id="descripcion_pre"></p>
-								
-								
-							</div>
-							<div class="botones">
-								<button class="item" type="submit" >Guardar</button>
-								<a class="item close" href="#close" class="cerrar" >Cancelar</a>
-							</div>
-						</section>
+								<hr>
+								<div class="contenido">
+									<p id="descripcion_pre"></p>
+								</div>
+
+								<div class="grupo">
+										<br>
+										<br>
+										<h4>Links</h4>
+										
+									</div>
+									
+									<div id="links">
+										
+									</div>
+									
+
+									<div class="grupo">
+										<br>
+										<br>
+										<h4>Archivos</h4>
+										
+									</div>
+									<div id="PreviewArchivos">
+										
+									</div>
+
+
+								<div class="botones">
+									<button id="btnSubmit" class="item" type="submit" disabled="disabled">Guardar</button>
+									<a class="item close" href="#close" class="cerrar" >Cancelar</a>
+								</div>
+							</section>
 
 						</div>
-						<!-- /PRUEBA -->
 
+
+					<!-- SECCION MODAL PREVISUALISACION -->
 
 
 
@@ -452,6 +537,8 @@
 				</div>
 			</section>
 			<?php endif; ?>
+
+		<!-- /SECCION AGREGAR CONTENIDO AL BLOG -->
 
 		</main>
 

@@ -56,7 +56,7 @@
 					<p><strong>Punto: </strong><?= $actividad[1] * 0.20 ?>pts</p>
 					<br>
 
-					<p><strong>Descripcion: </strong><?= $actividad[5] ?></p>
+					<p><strong>Descripcion: </strong><?= nl2br($actividad[5]) ?></p>
 					
 					
 

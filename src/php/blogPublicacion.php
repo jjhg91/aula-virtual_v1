@@ -2,7 +2,7 @@
 	require_once('conn.php');
 	
 	$titulo = $_POST['title'];
-	$mensaje = nl2br($_POST['message']);
+	$mensaje = $_POST['message'];
 	$materia = (int)$_POST['materia'];
 	$fecha = date("m-d-Y",time()) ;
 

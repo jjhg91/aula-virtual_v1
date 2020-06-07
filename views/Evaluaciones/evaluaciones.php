@@ -76,7 +76,7 @@
 					<div class="titulo_der">
 						<div class="enlaces">
 							
-							<a href="../../src/php/eliminarEvaluacion.php?mat=<?= $prof ?>&eval=<?= $actividad[0] ?>"><span class="icon-bin"></span></a>
+							<a title="Eliminar" href="../../src/php/eliminarEvaluacion.php?mat=<?= $prof ?>&eval=<?= $actividad[0] ?>"><span class="icon-bin"></span></a>
 						</div>
 					</div>
 					<?php endif ?>	
@@ -146,81 +146,126 @@
 
 
 
-						
+					<!-- SECCION DE AGREGAR LINKS -->
+
 						<div class="grupo">
 							<br>
 							<br>
 							<h3>Links</h3>
 							<br>
-							<p>Para agregar un link tendrás que colocar un nombre en el campo (Nombre link) y luego colocar el link en el campo de abajo (Link) colocar el link. ejemplo</p>
-							<br>
-							<p>Nombre Link = Pagina Web del Instituto</p>
-							<p>Link = https://iutjmc.com.ve</p>
-							<br>
-							<p>Aparecerá de esta manera a los alumnos <a href="https://iutjmc.com.ve">Pagina Web del Instituto</a></p>		
-						</div>
-						<div class="grupo">
-							<input name="nlink1"  type="text" placeholder="Nombre del link 1">
-							<input name="link1" type="text" placeholder="Link 1">
-						</div>
-						
-						<div class="grupo">
-							<input name="nlink2" type="text" placeholder="Nombre del link 2">
-							<input name="link2" type="text" placeholder="Link 2">
-						</div>
-
-						<div class="grupo">
-							<input name="nlink3" type="text" placeholder="Nombre del link 3">
-							<input name="link3" type="text" placeholder="Link 3">
+							<p><small>
+								Para agregar un link tendrás que colocar un nombre en el campo (Nombre link) y luego colocar el link en el campo de abajo (Link) colocar el link. 
+								<br>
+								<br>
+								Ejemplo:
+								
+								<br>
+								Nombre Link = Pagina Web del Instituto
+								<br>
+								Url del Link = https://iutjmc.com.ve
+								<br>
+								<br>
+								Aparecerá de esta manera a los alumnos <a href="https://iutjmc.com.ve">Pagina Web del Instituto</a>
+							</small></p>	
 						</div>
 
 						<div class="grupo">
-							<input name="nlink4" type="text" placeholder="Nombre del link 4">
-							<input name="link4" type="text" placeholder="Link 4">
+							<span>Link 1</span>
+							<div class="grupo">
+								<label for="">Nombre del Link</label>
+								<input id="nlink1" name="nlink1"  type="text" placeholder="Nombre del link 1">
+							</div>
+							<div class="grupo">
+								<label for="">Url del Link</label>
+								<input id="link1" name="link1" type="text" placeholder="Url del Link 1">
+							</div>
 						</div>
 						
+						<div class="grupo">
+							<span>Link 2</span>
+							<div class="grupo">
+								<label for="">Nombre del Link</label>
+								<input id="nlink2" name="nlink2" type="text" placeholder="Nombre del link 2">
+							</div>
+							<div class="grupo">
+								<label for="">Url del Link</label>
+								<input id="link2" name="link2" type="text" placeholder="Url del Link 2">
+							</div>
+						</div>
+
+						<div class="grupo">
+							<span>Link 3</span>
+							<div class="grupo">
+								<label for="">Nombre del Link</label>
+								<input id="nlink3" name="nlink3" type="text" placeholder="Nombre del link 3">
+							</div>
+							<div class="grupo">
+								<label for="">Url del Link</label>
+								<input id="link3" name="link3" type="text" placeholder="Url del Link 3">
+							</div>
+							
+						</div>
+
+						<div class="grupo">
+							<span>Link 4</span>
+							<div class="grupo">
+								<label for="">Nombre del Link</label>
+								<input id="nlink4" name="nlink4" type="text" placeholder="Nombre del link 4">
+							</div>
+							<div class="grupo">
+								<label for="">Url del Link</label>
+								<input id="link4" name="link4" type="text" placeholder="Url del Link 4">
+							</div>
+						</div>
+
+					<!-- /SECCION DE AGREGAR LINKS -->
+
+
+
+					<!-- SECCION DE AGREGAR ARCHIVOS -->
+
 						<div class="grupo">
 							<br>
 							<br>
 							<h3>Archivos</h3>
 						</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 						<div class="grupo">
-							<input name="file1" type="file">
-							<input name="file2" type="file">
-							<input name="file3" type="file">
-							<input name="file4" type="file">
+							<div class="grupo">
+								<label for="">Archivo 1</label>
+								<input id="file1" name="file1" type="file">
+							</div>
+							<div class="grupo">
+								<label for="">Archivo 2</label>
+								<input id="file2" name="file2" type="file">
+							</div>
+							<div class="grupo">
+								<label for="">Archivo 3</label>
+								<input id="file3" name="file3" type="file">
+							</div>
+							<div class="grupo">
+								<label for="">Archivo 4</label>
+								<input id="file4" name="file4" type="file">
+							</div>
 						</div>
+
+					<!-- /SECCION DE AGREGAR ARCHIVOS -->
+
+
+
 						<div class="grupo_oculto">
 							<input type="text" name="mat" style="display: none;" value="<?= $prof ?> ">
 						</div>
 
 
-						<!-- <button>Guardar</button> -->
 
-						<!-- PRUEBA  -->
+						<a id="PreviewBoton" class="OpenModal OpenModalPreview" href="#OpenModal">Guardar</a>
 
-						<a class="OpenModal OpenModalPreview" href="#OpenModalPreview">Guardar</a>
 
-						<div id="OpenModalPreview" class="PreviewModal">
+
+					<!-- SECCION DE PREVIEW MODAL -->
+					
+						<div id="OpenModal" class="Modal PreviewModal">
 		
-							
-
-
-
 							<section class="preview">
 								<div class="titulo">
 									<div class="titulo_izq">
@@ -237,10 +282,30 @@
 
 									<p><strong>Descripcion: </strong><span id="descripcion"></span></p>
 									
+
+									<div class="grupo">
+										<br>
+										<br>
+										<h4>Links</h4>
+									</div>
+									
+									<div id="links">
+										
+									</div>
+									
+
+									<div class="grupo">
+										<br>
+										<br>
+										<h4>Archivos</h4>
+									</div>
+									<div id="PreviewArchivos">
+										
+									</div>
 						
 								</div>
 								<div class="botones">
-									<button type="submit">Guardar</button>
+									<button id="btnSubmit" type="submit" disabled="disabled">Guardar</button>
 
 									<a class="item close" href="#close" class="cerrar" >Cancelar</a>
 								</div>
@@ -249,17 +314,10 @@
 
 
 
-
-
-
-
-
-
-
 						</div>
 
 
-						<!-- /PRUEBA -->
+					<!-- /SECCION DE PREVIEW MODAL -->
 					</form>
 				</div>
 			</section>

@@ -322,18 +322,12 @@ body main section.section_agregar div.contenido form input {
   border: none;
   width: 100%;
 }
-body main section.section_agregar div.contenido form input[type=text] {
-  margin-bottom: 10px;
-}
 body main section.section_agregar div.contenido form textarea, body main section.section_agregar div.contenido form select {
   width: 100%;
   padding: 10px;
   background-color: #e8e8e8;
   border-radius: 5px;
   border: none;
-}
-body main section.section_agregar div.contenido form input[type=file] {
-  margin-top: 20px;
 }
 body main section.section_agregar div.contenido form button {
   padding: 10px 30px 10px 30px;

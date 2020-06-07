@@ -21,6 +21,7 @@
     inner join valor on plan_evaluacion.valor = valor.id_valor 
     inner join semana on plan_evaluacion.semana = semana.id_semana
     where  id_profesorcursogrupo = $prof
+    ORDER BY semana.descripcion ASC
     ");
    $select->execute();
    $planes = $select->fetchAll();
