@@ -30,7 +30,7 @@
 			
 			<div>
 
-				<h4 class="grande">Instituto Universitario de Tecnología José María Carreño</h4>
+				<h4 class="grande">Instituto Universitario de Tecnología "José María Carreño"</h4>
 				<h4 class="chico">IUTJMC</h4>
 			</div>
 			
