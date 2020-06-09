@@ -380,6 +380,9 @@ body main section.section_agregar div.contenido form div.Modal:target {
 }
 body main section.section_agregar div.contenido form div.Modal section.preview {
   width: 70%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin: 20px 0px;
 }
 body main section.section_agregar div.contenido form div.Modal section.preview div.titulo {
   margin: 0;

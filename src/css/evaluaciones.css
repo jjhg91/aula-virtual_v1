@@ -364,6 +364,9 @@ body main section.section_agregar div.contenido form div.PreviewModal:target {
 }
 body main section.section_agregar div.contenido form div.PreviewModal section.preview {
   width: 70%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin: 20px 0px;
 }
 body main section.section_agregar div.contenido form div.PreviewModal section.preview div.titulo {
   margin: 0;
