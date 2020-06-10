@@ -301,25 +301,25 @@
 						<div class="trabajos">
 							<br>
 							<?php if ($actividadE[5]): ?>
-							<a href="../../upload/<?= $materia.'/'.$evaluacion.'/'.$actividadE[5] ?>" download>Archivo 1</a>
+							<a href="../../upload/evaluacion/<?= $materia.'/'.$evaluacion.'/'.$actividadE[5] ?>" download>Archivo 1</a>
 							<br>
 							<br>
 							<?php endif ?>
 							
 							<?php if ($actividadE[6]): ?>
-							<a href="../../upload/<?= $materia.'/'.$evaluacion.'/'.$actividadE[6] ?>" download>Archivo 2</a>
+							<a href="../../upload/evaluacion/<?= $materia.'/'.$evaluacion.'/'.$actividadE[6] ?>" download>Archivo 2</a>
 							<br>
 							<br>
 							<?php endif ?>
 							
 							<?php if ($actividadE[7]): ?>
-							<a href="../../upload/<?= $materia.'/'.$evaluacion.'/'.$actividadE[7] ?>" download>Archivo 3</a>
+							<a href="../../upload/evaluacion/<?= $materia.'/'.$evaluacion.'/'.$actividadE[7] ?>" download>Archivo 3</a>
 							<br>
 							<br>
 							<?php endif ?>
 							
 							<?php if ($actividadE[8]): ?>
-							<a href="../../upload/<?= $materia.'/'.$evaluacion.'/'.$actividadE[8] ?>" download>Archivo 4</a>
+							<a href="../../upload/evaluacion/<?= $materia.'/'.$evaluacion.'/'.$actividadE[8] ?>" download>Archivo 4</a>
 							<?php endif ?>	
 						</div>
 					</div>
@@ -348,7 +348,7 @@
 					<form method="post" enctype="multipart/form-data" action="../../src/php/cargarEvaluacion.php">
 						<div class="grupo">
 							<?php if ($trabajo[1]): ?>
-								<a href="../../upload/<?= $materia.'/'.$evaluacion.'/'.$trabajo[1] ?>" class="col-md-12 col-xs-12 col-sm-12" download><strong>ARCHIVO 1 CARGADO</strong></a>
+								<a href="../../upload/evaluacion/<?= $materia.'/'.$evaluacion.'/'.$trabajo[1] ?>" class="col-md-12 col-xs-12 col-sm-12" download><strong>ARCHIVO 1 CARGADO</strong></a>
 							<?php else: ?>
 								<a>SIN CARGAR</a>
 							<?php endif; ?>
@@ -362,7 +362,7 @@
 						</div>
 						<div class="grupo">
 							<?php if ($trabajo[2]): ?>
-								<a href="../../upload/<?= $materia.'/'.$evaluacion.'/'.$trabajo[2] ?>" class="col-md-12 col-xs-12 col-sm-12" download><strong>ARCHIVO 2 CARGADO</strong></a>
+								<a href="../../upload/evaluacion/<?= $materia.'/'.$evaluacion.'/'.$trabajo[2] ?>" class="col-md-12 col-xs-12 col-sm-12" download><strong>ARCHIVO 2 CARGADO</strong></a>
 							<?php else: ?>
 								<a>SIN CARGAR</a>
 							<?php endif; ?>
@@ -374,7 +374,7 @@
 						</div>
 						<div class="grupo">
 							<?php if ($trabajo[3]): ?>
-								<a href="../../upload/<?= $materia.'/'.$evaluacion.'/'.$trabajo[3] ?>" class="col-md-12 col-xs-12 col-sm-12" download><strong>ARCHIVO 3 CARGADO</strong></a>
+								<a href="../../upload/evaluacion/<?= $materia.'/'.$evaluacion.'/'.$trabajo[3] ?>" class="col-md-12 col-xs-12 col-sm-12" download><strong>ARCHIVO 3 CARGADO</strong></a>
 							<?php else: ?>
 								<a>SIN CARGAR</a>
 							<?php endif; ?>
@@ -386,7 +386,7 @@
 						</div>
 						<div class="grupo">
 							<?php if ($trabajo[4]): ?>
-								<a href="../../upload/<?= $materia.'/'.$evaluacion.'/'.$trabajo[4] ?>" class="col-md-12 col-xs-12 col-sm-12" download><strong>ARCHIVO 4 CARGADO</strong></a>
+								<a href="../../upload/evaluacion/<?= $materia.'/'.$evaluacion.'/'.$trabajo[4] ?>" class="col-md-12 col-xs-12 col-sm-12" download><strong>ARCHIVO 4 CARGADO</strong></a>
 							<?php else: ?>
 								<a>SIN CARGAR</a>
 							<?php endif; ?>
