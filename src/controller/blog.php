@@ -6,7 +6,7 @@
 	$sel = $myPDO2->prepare("
 		SELECT * FROM blog
 		WHERE id_profesorcursogrupo = $prof
-		ORDER BY fecha ASC
+		ORDER BY STR_TO_DATE(fecha,'%d-%m-%Y') ASC
 		");
 	$sel->execute();
 	$posts = $sel->fetchAll();

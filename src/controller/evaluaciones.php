@@ -24,7 +24,7 @@
 		inner join tipo_evaluacion  on plan_evaluacion.tipo_evaluacion = tipo_evaluacion.id_tipo_evaluacion 
 		inner join valor on plan_evaluacion.valor = valor.id_valor 
 		WHERE actividades.id_profesorcursogrupo = $prof 
-		ORDER BY actividades.fecha ASC;
+		ORDER BY STR_TO_DATE(actividades.fecha,'%d-%m-%Y') ASC
 		");
 	$sel->execute();
 	$actividades = $sel->fetchAll();
@@ -40,7 +40,7 @@
 		FROM plan_evaluacion
 		inner join tipo_evaluacion ON plan_evaluacion.tipo_evaluacion = tipo_evaluacion.id_tipo_evaluacion
 		inner join valor ON plan_evaluacion.valor = valor.id_valor 
-		where id_profesorcursogrupo = $prof ;
+		where id_profesorcursogrupo = $prof;
 		");
 	$sel2->execute();
 	$planes= $sel2->fetchAll();
