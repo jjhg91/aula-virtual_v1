@@ -28,7 +28,9 @@
         actividades.link1,
         actividades.link2,
         actividades.link3,
-        actividades.link4
+        actividades.link4,
+        plan_evaluacion.descripcion,
+        plan_evaluacion.id_plan_evaluacion
 		FROM actividades 
 		inner join plan_evaluacion on actividades.id_plan_evaluacion = plan_evaluacion.id_plan_evaluacion 
 		inner join tipo_evaluacion  on plan_evaluacion.tipo_evaluacion = tipo_evaluacion.id_tipo_evaluacion 
