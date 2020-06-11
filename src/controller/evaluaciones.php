@@ -45,8 +45,5 @@
 	$sel2->execute();
 	$planes= $sel2->fetchAll();
 
-                               
-
-
 
  ?>

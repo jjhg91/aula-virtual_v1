@@ -33,8 +33,11 @@
 				<h4 class="grande">Instituto Universitario de Tecnología "José María Carreño"</h4>
 				<h4 class="chico">IUTJMC</h4>
 			</div>
+			<div>
+				<a title="Manual de usuario Alumnos" href="../../media/manuales/manual_de_usuario_alumno.pdf" download=""><span class="icon-map"></span></a>
+				<a href="../../src/php/logout.php">SALIR</a>
+			</div>
 			
-			<a href="../../src/php/logout.php">SALIR</a>
 		</div>
 	</header>
 	<!-- /HEADER -->

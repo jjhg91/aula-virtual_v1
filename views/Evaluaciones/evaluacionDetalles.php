@@ -372,13 +372,34 @@
 
 			
 			<?php if($_SESSION['user'] == 'profesor'): ?>
-			<?php foreach ($actividadesE as $actividadE): ?>
 
+			<div id="Entregadas">
+			<?php if (empty($actividadesE)): ?>
+				
+			<section class="trabajos cargados">				
+					<div class="contenido">
+						<h3>Ningun alumnos a entregado la evaluación. </h3>
+						</div>
+					</div>
+			</section>
+			
+			<?php else: ?>
+			<section class="trabajos cargados">				
+					<div class="contenido">
+						<h3>Evaluaciones Entregadas </h3>
+						</div>
+					</div>
+			</section>
+			<?php endif ?>
+			
+			<?php foreach ($actividadesE as $actividadE): ?>
 			<?php 
 				$query = $myPDO->prepare("SELECT cedula, p_nombres, p_apellido FROM estudiante WHERE id_estudia = $actividadE[3] AND regimen_estudio = 2");
 				$query->execute();
 				$estu= $query->fetch();
 			?>
+
+			
 
 			<section class="trabajos cargados">
 					<div class="titulo">
@@ -388,7 +409,7 @@
 						<div class="titulo_der">
 							<div class="enlaces">
 							
-								<a href="#OpenModal<?= $actividadE[3] ?>"><span class="icon-pencil"></span></a>
+								<a title="Corregir Evaluación" href="#OpenModal<?= $actividadE[3] ?>"><span class="icon-pencil"></span></a>
 							</div>
 						</div>
 					</div>							
@@ -470,6 +491,8 @@
 			
 
 			<?php endforeach; ?>
+			</div>
+
 			<?php endif ?>
 
 

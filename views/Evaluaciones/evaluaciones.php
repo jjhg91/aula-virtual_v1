@@ -98,6 +98,32 @@
 					<p><strong>Punto: </strong><?= $actividad[1] * 0.20 ?>pts</p>
 					<br>
 					<a href="evaluacionDetalles.php?mat=<?= $prof ?>&evalu=<?= $actividad[0]  ?>">Detalles</a>
+
+
+					<?php if ($_SESSION['user'] == 'profesor'): ?>
+					<?php 
+						$al = $myPDO->prepare("
+								SELECT COUNT(id_profesorcursogrupo) FROM inscripcion 
+								WHERE id_profesorcursogrupo = $prof
+							");
+						$al->execute();
+						$tAlumnos = $al->fetch();
+
+
+
+						$ent = $myPDO2->prepare("
+								SELECT COUNT(id_actividades) FROM actividades_estudiante
+								WHERE id_actividades = $actividad[0] ; 
+							");
+						$ent->execute();
+						$Aentregadas = $ent->fetch();
+					?>
+					<br>
+					<br>
+					<a href="evaluacionDetalles.php?mat=<?= $prof ?>&evalu=<?= $actividad[0]  ?>#Entregadas">Actividades entregadas (<?= $Aentregadas[0]." / ".$tAlumnos[0] ?>)</a>
+					<?php endif ?>	
+
+
 				</div>	
 			</section>	
 			<?php endforeach; ?>
