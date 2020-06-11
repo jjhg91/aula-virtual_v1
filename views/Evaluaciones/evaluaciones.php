@@ -80,16 +80,17 @@
 						<?php else: ?>
 							<h4><?= ucfirst($actividad[7]) ?></h4>
 						<?php endif ?>
-						
 					</div>
+
 					<?php if ($_SESSION['user'] == 'profesor'): ?>
 					<div class="titulo_der">
 						<div class="enlaces">
-							
+							<a title="Editar" href="evaluacionDetalles.php?mat=<?= $prof ?>&evalu=<?= $actividad[0]  ?>#ModalEditar<?= $actividad[0] ?>"><span class="icon-pencil"></span></a>
 							<a title="Eliminar" href="../../src/php/eliminarEvaluacion.php?mat=<?= $prof ?>&eval=<?= $actividad[0] ?>"><span class="icon-bin"></span></a>
 						</div>
 					</div>
 					<?php endif ?>	
+
 				</div>
 				<div class="contenido">
 					<p><strong>Fecha limite: </strong><?= $actividad[4] ?></p>

@@ -171,7 +171,7 @@
 					<?php if ($_SESSION['user'] === 'profesor'): ?>
 				
 					<div id="ModalEditar<?= $actividad[0] ?>" class="editar">
-						<form method="post" enctype="multipart/form-data" action="../../src/php/cargarEvaluaciones.php">
+						<form method="post" enctype="multipart/form-data" action="../../src/php/editarEvaluaciones.php">
 							<div class="grupo">
 								<label for="plan">Evaluacion</label>	
 								<select name="plan" id="plan_evaluacion">
@@ -346,6 +346,7 @@
 
 							<div class="grupo_oculto">
 								<input type="text" name="mat" style="display: none;" value="<?= $prof ?> ">
+								<input type="text" name="actividad" style="display: none;" value="<?= $actividad[0] ?> ">
 							</div>
 
 
