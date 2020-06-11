@@ -17,6 +17,7 @@
 		inner join especialidad on pensum.id_especialidad = especialidad.id_especialidad 
 		inner join estudiante on inscripcion.id_estudia = estudiante.id_estudia
 		where profesorcursogrupo.id_profesorcursogrupo = $prof and profesorcursogrupo.periodo = 71
+		ORDER BY estudiante.p_apellido ASC, estudiante.p_nombres ASC ; 
 		");
 	$sel->execute();
 	$alumnos = $sel->fetchAll();

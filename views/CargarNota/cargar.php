@@ -98,6 +98,7 @@
 					FROM inscripcion i
 					inner join estudiante e on i.id_estudia = e.id_estudia 
 					WHERE i.id_profesorcursogrupo = $prof
+					ORDER BY e.p_apellido ASC , e.p_nombres ASC
 				");
 				$estud->execute();
 				$estudiante = $estud->fetchAll();
