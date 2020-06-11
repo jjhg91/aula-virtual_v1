@@ -89,16 +89,18 @@
 						<?php endif ?>
 						<span><small>Fecha: <?= $post[4] ?></small></span>
 					</div>
+
 					<?php if($_SESSION['user'] == 'profesor'): ?>
 					<div class="titulo_der">
 						<div class="enlaces">
-							<a href=""><span class="icon-bin"></span></a>
+							<a href="../../src/php/eliminarForo.php?mat=<?= $prof ?>&foro=<?= $post[0] ?>"><span class="icon-bin"></span></a>
 						</div>
 					</div>
 					<?php endif ?>
+
 				</div>
 				<div class="contenido">
-					<p> <?= $post[5] ?> </p>
+					<p> <?= nl2br($post[5]) ?> </p>
 				</div>
 			</section>	
 			<?php endforeach; ?>

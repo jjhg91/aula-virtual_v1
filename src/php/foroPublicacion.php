@@ -1,7 +1,7 @@
 <?php 
 	require_once('conn.php');
 	
-	$mensaje = nl2br($_POST['message']);
+	$mensaje = $_POST['message'];
 	$materia = (int)$_POST['materia'];
 	$usuario = (int)$_POST['usuario'];
 	$level = $_POST['level'];
