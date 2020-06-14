@@ -52,7 +52,7 @@
 		$a = (int)$preve[0] + (int)$val[0];
 
 		
-		if ( $a <= 100 AND $preve[1] < 6) {
+		if ( $a <= 100 AND $preve[1] < 10) {
 			if(!empty($otros) and $tipo == 8){
 				$sql = "INSERT INTO plan_evaluacion (id_profesorcursogrupo, tipo_evaluacion, otros, valor, descripcion, semana) 
 						VALUES($materia, $tipo, '$otros', $valor, '$descripcion', $semana);";
