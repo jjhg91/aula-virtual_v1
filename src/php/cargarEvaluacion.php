@@ -37,7 +37,8 @@
 
 		header('location: ../../views/Evaluaciones/evaluacionDetalles.php?mat='.$materia.'&evalu='.$evaluacion.'&gu=f');
 	}
-	exit;
+
+
     $query = $myPDO->prepare("
         SELECT 
         pensum.descripcion, 
