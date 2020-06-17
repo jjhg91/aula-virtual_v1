@@ -72,7 +72,16 @@
         actividades.link1,
         actividades.link2,
         actividades.link3,
-        actividades.link4
+        actividades.link4,
+        actividades_estudiante.nlink1,
+        actividades_estudiante.nlink2,
+        actividades_estudiante.nlink3,
+        actividades_estudiante.nlink4,
+        actividades_estudiante.link1,
+        actividades_estudiante.link2,
+        actividades_estudiante.link3,
+        actividades_estudiante.link4,
+        actividades_estudiante.descripcion
 		FROM actividades 
 		inner join plan_evaluacion on actividades.id_plan_evaluacion = plan_evaluacion.id_plan_evaluacion 
 		inner join tipo_evaluacion  on plan_evaluacion.tipo_evaluacion = tipo_evaluacion.id_tipo_evaluacion 

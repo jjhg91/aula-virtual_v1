@@ -355,6 +355,8 @@
 								<a class="item close" href="#close" class="cerrar" >Cancelar</a>
 							</div>
 
+
+
 						</form>
 
 						
@@ -419,26 +421,72 @@
 						<br>
 						<span><small><strong>Fecha de Entrega: </strong><?= $actividad[4]  ?></small></span>
 						<br>
-						
+						<span><small>
+							<strong>Estatus: </strong>
 							<?php if(!$actividadE[9]): ?>
-							
-							<span><small><strong>Nota: </strong>SIN CORREGIR</small></span>
-							<br>
-							<span><small><strong>Observacion: </strong>SIN CORREGIR</small></span>
-							
-
+							SIN CORREGIR
 							<?php else: ?>
-
-							<span><small><strong>Nota: </strong><?= $actividadE[10] ?></small></span>
-							<br>
-							<span><small><strong>Observacion: </strong><?= $actividadE[11] ?></small></span>
-														
-							
+							CORREGIDO
 							<?php endif; ?>
-						
-						
-						
+						</small></span>
+
+
+
+					<!-- DESCRIPCION ENTRAGADA POR EL ESTUDIANTE -->
+					<div class="Trabajos">
+						<br>
+						<br>
+						<h4>Descripcion</h4>
+						<br>
+						<p><?= nl2br($actividadE[29]); ?></p>
+					</div>
+					<!-- /DESCRIPCION ENTRAGADA POR EL ESTUDIANTE -->
+
+
+					
+					<!-- LINKS ENTREGADOS POR EL ESTUDIANTE -->
 						<div class="trabajos">
+
+							<?php if ($actividadE[21] or $actividadE[22] or $actividadE[23] or $actividadE[24]): ?>
+							<br>
+							<br>
+							<h4>Links</h4>
+							<br>
+							<?php endif ?>
+
+							<?php if ($actividadE[21]): ?>
+							<a href="<?= $actividadE[25] ?>"><?= $actividadE[21] ?></a>
+							<br>
+							<br>
+							<?php endif ?>
+
+							<?php if ($actividadE[22]): ?>
+							<a href="<?= $actividadE[26] ?>"><?= $actividadE[22] ?></a>
+							<br>
+							<br>
+							<?php endif ?>
+
+							<?php if ($actividadE[23]): ?>
+							<a href="<?= $actividadE[27] ?>"><?= $actividadE[23] ?></a>
+							<br>
+							<br>
+							<?php endif ?>
+
+							<?php if ($actividadE[24]): ?>
+							<a href="<?= $actividadE[28] ?>"><?= $actividadE[24] ?></a>
+							<br>
+							<br>
+							<?php endif ?>
+
+						</div>
+					<!-- /LINKS ENTREGADOS POR EL ESTUDIANTE -->
+
+
+					<!-- ARCHIVOS ENTREGADOS POR EL ESTUDIANTE -->
+						<div class="trabajos">
+							<br>
+							<br>
+							<h4>Archivos</h4>
 							<br>
 							<?php if ($actividadE[5]): ?>
 							<a href="../../upload/evaluacion/<?= $materia.'/'.$evaluacion.'/'.$actividadE[5] ?>" download>Archivo 1</a>
@@ -462,6 +510,10 @@
 							<a href="../../upload/evaluacion/<?= $materia.'/'.$evaluacion.'/'.$actividadE[8] ?>" download>Archivo 4</a>
 							<?php endif ?>	
 						</div>
+					<!-- /ARCHIVOS ENTREGADOS POR EL ESTUDIANTE -->
+
+
+					<!-- CORREGIR EVALUACION PROFESOR -->
 						<div id="OpenModal<?= $actividadE[3] ?>" class="Modal">
 							<form method="post" action="../../src/php/corregirEvaluacion.php">
 								<div class="grupo">
@@ -480,12 +532,15 @@
 								</div>
 
 								<div class="grupo">
-									<button type="submit">Guardar</button>
-									<a href="#close" class="cerrar">Cerrar</a>
+									<button  type="submit">Guardar</button>
+									<a  href="#close" class="cerrar">Cerrar</a>
 								</div>
+
+
+
 							</form>
-							
 						</div>
+					<!-- /CORREGIR EVALUACION PROFESOR -->
 					</div>
 			</section>
 			
@@ -517,6 +572,31 @@
 						<div class="titulo_izq">
 							<h4><?= $estu[1]." ".$estu[2]  ?></h4>
 						</div>
+
+						<?php 
+							$fecha = date("d-m-Y",time()) ;
+							$fecha1 = strtotime($fecha);
+							$flim = $myPDO2->prepare("
+									SELECT fecha FROM actividades
+									WHERE 
+									id_profesorcursogrupo = $materia AND 
+									id_actividades = $evaluacion;  
+									");
+								$flim->execute();
+								$flimit = $flim->fetch();
+								$flimite = strtotime($flimit[0]);
+
+
+								if ( $fecha1 < $flimite ):
+						?>
+						<div class="titulo_der">
+							<div class="enlaces">
+								<a title="Editar" href="#ModalEditarEstudiante"><span class="icon-pencil"></span></a>
+								
+							</div>
+						</div>
+						
+						<?php endif ?>
 						
 					</div>							
 					<div class="contenido">
@@ -533,7 +613,64 @@
 							CORREGIDO
 							<?php endif; ?>
 						</small></span>
+
+
+
+					<!-- DESCRIPCION ENTRAGADA POR EL ESTUDIANTE -->
+					<div class="Trabajos">
+						<br>
+						<br>
+						<h4>Descripcion</h4>
+						<br>
+						<p><?= nl2br($actividadE[29]); ?></p>
+					</div>
+					<!-- /DESCRIPCION ENTRAGADA POR EL ESTUDIANTE -->
+
+
+					
+					<!-- LINKS ENTREGADOS POR EL ESTUDIANTE -->
 						<div class="trabajos">
+
+							<?php if ($actividadE[21] or $actividadE[22] or $actividadE[23] or $actividadE[24]): ?>
+							<br>
+							<br>
+							<h4>Links</h4>
+							<br>
+							<?php endif ?>
+
+							<?php if ($actividadE[21]): ?>
+							<a href="<?= $actividadE[25] ?>"><?= $actividadE[21] ?></a>
+							<br>
+							<br>
+							<?php endif ?>
+
+							<?php if ($actividadE[22]): ?>
+							<a href="<?= $actividadE[26] ?>"><?= $actividadE[22] ?></a>
+							<br>
+							<br>
+							<?php endif ?>
+
+							<?php if ($actividadE[23]): ?>
+							<a href="<?= $actividadE[27] ?>"><?= $actividadE[23] ?></a>
+							<br>
+							<br>
+							<?php endif ?>
+
+							<?php if ($actividadE[24]): ?>
+							<a href="<?= $actividadE[28] ?>"><?= $actividadE[24] ?></a>
+							<br>
+							<br>
+							<?php endif ?>
+
+						</div>
+					<!-- /LINKS ENTREGADOS POR EL ESTUDIANTE -->
+
+
+					<!-- ARCHIVOS ENTREGADOS POR EL ESTUDIANTE -->
+						<div class="trabajos">
+							<br>
+							<br>
+							<h4>Archivos</h4>
 							<br>
 							<?php if ($actividadE[5]): ?>
 							<a href="../../upload/evaluacion/<?= $materia.'/'.$evaluacion.'/'.$actividadE[5] ?>" download>Archivo 1</a>
@@ -557,6 +694,158 @@
 							<a href="../../upload/evaluacion/<?= $materia.'/'.$evaluacion.'/'.$actividadE[8] ?>" download>Archivo 4</a>
 							<?php endif ?>	
 						</div>
+					<!-- /ARCHIVOS ENTREGADOS POR EL ESTUDIANTE -->
+
+					<!-- MODAL EDITAR EVALUACION ENVIADA POR ALUMNO -->
+						<div id="ModalEditarEstudiante" class="editar">
+							<form method="post" enctype="multipart/form-data" action="../../src/php/cargarEvaluacion.php">
+								
+								<div class="grupo">
+										<br>
+										<br>
+										<h3>Descripcion</h3>
+									</div>
+								<div class="grupo">
+										<textarea name="descripcion" id="message" cols="30" rows="10" placeholder="Descripcion"><?= $actividadE[29]; ?></textarea>
+								</div>
+
+								<!-- SECCION DE AGREGAR LINKS -->
+
+									<div class="grupo">
+										<br>
+										<br>
+										<h3>Links</h3>
+										<br>
+										<p><small>
+											Para agregar un link tendrás que colocar un nombre en el campo (Nombre link) y luego colocar el link en el campo de abajo (Link) colocar el link. 
+											<br>
+											<br>
+											Ejemplo:
+											
+											<br>
+											Nombre Link = Pagina Web del Instituto
+											<br>
+											Url del Link = https://iutjmc.com.ve
+											<br>
+											<br>
+											Aparecerá de esta manera al profesor <a href="https://iutjmc.com.ve">Pagina Web del Instituto</a>
+										</small></p>	
+									</div>
+
+									<div class="grupo">
+										<span>Link 1</span>
+										<div class="grupo">
+											<label for="">Nombre del Link</label>
+											<input id="nlink1" name="nlink1"  type="text" placeholder="Nombre del link 1" value=" <?= $actividadE[21] ?>">
+										</div>
+										<div class="grupo">
+											<label for="">Url del Link</label>
+											<input id="link1" name="link1" type="text" placeholder="Url del Link 1" value=" <?= $actividadE[25] ?>">
+										</div>
+									</div>
+									
+									<div class="grupo">
+										<span>Link 2</span>
+										<div class="grupo">
+											<label for="">Nombre del Link</label>
+											<input id="nlink2" name="nlink2" type="text" placeholder="Nombre del link 2" value=" <?= $actividadE[22] ?>">
+										</div>
+										<div class="grupo">
+											<label for="">Url del Link</label>
+											<input id="link2" name="link2" type="text" placeholder="Url del Link 2" value=" <?= $actividadE[26] ?>">
+										</div>
+									</div>
+
+									<div class="grupo">
+										<span>Link 3</span>
+										<div class="grupo">
+											<label for="">Nombre del Link</label>
+											<input id="nlink3" name="nlink3" type="text" placeholder="Nombre del link 3" value=" <?= $actividadE[23] ?>">
+										</div>
+										<div class="grupo">
+											<label for="">Url del Link</label>
+											<input id="link3" name="link3" type="text" placeholder="Url del Link 3" value=" <?= $actividadE[27] ?>">
+										</div>
+										
+									</div>
+
+									<div class="grupo">
+										<span>Link 4</span>
+										<div class="grupo">
+											<label for="">Nombre del Link</label>
+											<input id="nlink4" name="nlink4" type="text" placeholder="Nombre del link 4" value=" <?= $actividadE[24] ?>">
+										</div>
+										<div class="grupo">
+											<label for="">Url del Link</label>
+											<input id="link4" name="link4" type="text" placeholder="Url del Link 4" value=" <?= $actividadE[28] ?>">
+										</div>
+									</div>
+
+								<!-- /SECCION DE AGREGAR LINKS -->
+
+								<!-- CARGAR ARCHIVO -->
+									<div class="grupo">
+										<br>
+										<br>
+										<h3>Archivos</h3>
+									</div>
+									<div class="grupo">
+										<div class="grupo">
+											<?php if ($trabajo[1]): ?>
+												<a href="../../upload/evaluacion/<?= $materia.'/'.$evaluacion.'/'.$trabajo[1] ?>" class="col-md-12 col-xs-12 col-sm-12" download><strong>ARCHIVO 1 CARGADO</strong></a>
+											<?php else: ?>
+												<a>SIN CARGAR</a>
+											<?php endif; ?>
+
+
+											<input id="file1" name="file1" type="file">
+										</div>
+										<div class="grupo">
+											<?php if ($trabajo[2]): ?>
+												<a href="../../upload/evaluacion/<?= $materia.'/'.$evaluacion.'/'.$trabajo[2] ?>" class="col-md-12 col-xs-12 col-sm-12" download><strong>ARCHIVO 2 CARGADO</strong></a>
+											<?php else: ?>
+												<a>SIN CARGAR</a>
+											<?php endif; ?>
+
+							
+											<input id="file2" name="file2" type="file">
+										</div>
+										<div class="grupo">
+											<?php if ($trabajo[3]): ?>
+												<a href="../../upload/evaluacion/<?= $materia.'/'.$evaluacion.'/'.$trabajo[3] ?>" class="col-md-12 col-xs-12 col-sm-12" download><strong>ARCHIVO 3 CARGADO</strong></a>
+											<?php else: ?>
+												<a>SIN CARGAR</a>
+											<?php endif; ?>
+
+											<input id="file3" name="file3" type="file">
+										</div>
+										<div class="grupo">
+											<?php if ($trabajo[4]): ?>
+												<a href="../../upload/evaluacion/<?= $materia.'/'.$evaluacion.'/'.$trabajo[4] ?>" class="col-md-12 col-xs-12 col-sm-12" download><strong>ARCHIVO 4 CARGADO</strong></a>
+											<?php else: ?>
+												<a>SIN CARGAR</a>
+											<?php endif; ?>
+
+									
+											<input id="file4" name="file4" type="file">
+										</div>
+									</div>
+								<!-- /CARGAR ARCHIVO -->
+									
+									<div class="form-group row">
+										<input type="text" name="materia" value="<?= $materia  ?>" style="display: none;">
+										<input type="text" name="alumno" value="<?= $alumno ?>" style="display: none;">
+										<input type="text" name="evaluacion" value="<?= $evaluacion ?>" style="display: none;">
+									</div>
+									
+									<div class="botones">
+										<button class="item" type="submit" >Guardar</button>
+										<a class="item close" href="#close" class="cerrar" >Cancelar</a>
+									</div>
+								</form>
+						</div>
+					<!-- /MODAL EDITAR EVALUACION ENVIADA POR ALUMNO -->
+
 					</div>
 			</section>
 
@@ -575,62 +864,171 @@
 
 
 			<?php if ($_SESSION['user'] === 'alumno'): ?>
+			<?php  
+				$fecha = date("d-m-Y",time()) ;
+				$fecha1 = strtotime($fecha);
+				$flim = $myPDO2->prepare("
+						SELECT fecha FROM actividades
+						WHERE 
+						id_profesorcursogrupo = $materia AND 
+						id_actividades = $evaluacion;  
+						");
+					$flim->execute();
+					$flimit = $flim->fetch();
+					$flimite = strtotime($flimit[0]);
+
+
+					if ( $fecha1 < $flimite ):
+						 $sel = $myPDO2->prepare("
+					    	SELECT * FROM actividades_estudiante
+					    	WHERE 
+					    	id_estudiante = $alumno AND 
+					    	id_profesorcursogrupo = $materia AND 
+					    	id_actividades = $evaluacion ;
+					    	");
+					    $sel->execute();
+					    $select = $sel->fetch();
+					    if (!$select):
+			?>
 			<section class="section_agregar">
 				<div class="titulo">
 					<h3>Cargar Evaluacion</h3>
 				</div>
 				<div class="contenido">
 					<form method="post" enctype="multipart/form-data" action="../../src/php/cargarEvaluacion.php">
+					
+					<div class="grupo">
+							<br>
+							<br>
+							<h3>Descripcion</h3>
+						</div>
+					<div class="grupo">
+							<textarea name="descripcion" id="message" cols="30" rows="10" placeholder="Descripcion"></textarea>
+					</div>
+
+					<!-- SECCION DE AGREGAR LINKS -->
+
 						<div class="grupo">
-							<?php if ($trabajo[1]): ?>
-								<a href="../../upload/evaluacion/<?= $materia.'/'.$evaluacion.'/'.$trabajo[1] ?>" class="col-md-12 col-xs-12 col-sm-12" download><strong>ARCHIVO 1 CARGADO</strong></a>
-							<?php else: ?>
-								<a>SIN CARGAR</a>
-							<?php endif; ?>
+							<br>
+							<br>
+							<h3>Links</h3>
+							<br>
+							<p><small>
+								Para agregar un link tendrás que colocar un nombre en el campo (Nombre link) y luego colocar el link en el campo de abajo (Link) colocar el link. 
+								<br>
+								<br>
+								Ejemplo:
+								
+								<br>
+								Nombre Link = Pagina Web del Instituto
+								<br>
+								Url del Link = https://iutjmc.com.ve
+								<br>
+								<br>
+								Aparecerá de esta manera al profesor <a href="https://iutjmc.com.ve">Pagina Web del Instituto</a>
+							</small></p>	
+						</div>
 
-							<!--
-							<label for="">SIN CARGAR</label>
-							-->
+						<div class="grupo">
+							<span>Link 1</span>
+							<div class="grupo">
+								<label for="">Nombre del Link</label>
+								<input id="nlink1" name="nlink1"  type="text" placeholder="Nombre del link 1">
+							</div>
+							<div class="grupo">
+								<label for="">Url del Link</label>
+								<input id="link1" name="link1" type="text" placeholder="Url del Link 1">
+							</div>
+						</div>
+						
+						<div class="grupo">
+							<span>Link 2</span>
+							<div class="grupo">
+								<label for="">Nombre del Link</label>
+								<input id="nlink2" name="nlink2" type="text" placeholder="Nombre del link 2">
+							</div>
+							<div class="grupo">
+								<label for="">Url del Link</label>
+								<input id="link2" name="link2" type="text" placeholder="Url del Link 2">
+							</div>
+						</div>
 
+						<div class="grupo">
+							<span>Link 3</span>
+							<div class="grupo">
+								<label for="">Nombre del Link</label>
+								<input id="nlink3" name="nlink3" type="text" placeholder="Nombre del link 3">
+							</div>
+							<div class="grupo">
+								<label for="">Url del Link</label>
+								<input id="link3" name="link3" type="text" placeholder="Url del Link 3">
+							</div>
+							
+						</div>
 
-							<input id="file1" name="file1" type="file">
+						<div class="grupo">
+							<span>Link 4</span>
+							<div class="grupo">
+								<label for="">Nombre del Link</label>
+								<input id="nlink4" name="nlink4" type="text" placeholder="Nombre del link 4">
+							</div>
+							<div class="grupo">
+								<label for="">Url del Link</label>
+								<input id="link4" name="link4" type="text" placeholder="Url del Link 4">
+							</div>
+						</div>
+
+					<!-- /SECCION DE AGREGAR LINKS -->
+
+					<!-- CARGAR ARCHIVO -->
+						<div class="grupo">
+							<br>
+							<br>
+							<h3>Archivos</h3>
 						</div>
 						<div class="grupo">
-							<?php if ($trabajo[2]): ?>
-								<a href="../../upload/evaluacion/<?= $materia.'/'.$evaluacion.'/'.$trabajo[2] ?>" class="col-md-12 col-xs-12 col-sm-12" download><strong>ARCHIVO 2 CARGADO</strong></a>
-							<?php else: ?>
-								<a>SIN CARGAR</a>
-							<?php endif; ?>
+							<div class="grupo">
+								<?php if ($trabajo[1]): ?>
+									<a href="../../upload/evaluacion/<?= $materia.'/'.$evaluacion.'/'.$trabajo[1] ?>" class="col-md-12 col-xs-12 col-sm-12" download><strong>ARCHIVO 1 CARGADO</strong></a>
+								<?php else: ?>
+									<a>SIN CARGAR</a>
+								<?php endif; ?>
 
-							<!--
-							<label for="">SIN CARGAR</label>
-							-->
-							<input id="file2" name="file2" type="file">
-						</div>
-						<div class="grupo">
-							<?php if ($trabajo[3]): ?>
-								<a href="../../upload/evaluacion/<?= $materia.'/'.$evaluacion.'/'.$trabajo[3] ?>" class="col-md-12 col-xs-12 col-sm-12" download><strong>ARCHIVO 3 CARGADO</strong></a>
-							<?php else: ?>
-								<a>SIN CARGAR</a>
-							<?php endif; ?>
 
-							<!--
-							<label for="">SIN CARGAR</label>
-							-->
-							<input id="file3" name="file3" type="file">
-						</div>
-						<div class="grupo">
-							<?php if ($trabajo[4]): ?>
-								<a href="../../upload/evaluacion/<?= $materia.'/'.$evaluacion.'/'.$trabajo[4] ?>" class="col-md-12 col-xs-12 col-sm-12" download><strong>ARCHIVO 4 CARGADO</strong></a>
-							<?php else: ?>
-								<a>SIN CARGAR</a>
-							<?php endif; ?>
+								<input id="file1" name="file1" type="file">
+							</div>
+							<div class="grupo">
+								<?php if ($trabajo[2]): ?>
+									<a href="../../upload/evaluacion/<?= $materia.'/'.$evaluacion.'/'.$trabajo[2] ?>" class="col-md-12 col-xs-12 col-sm-12" download><strong>ARCHIVO 2 CARGADO</strong></a>
+								<?php else: ?>
+									<a>SIN CARGAR</a>
+								<?php endif; ?>
 
-							<!--
-							<label for="">SIN CARGAR</label>
-							-->
-							<input id="file4" name="file4" type="file">
+				
+								<input id="file2" name="file2" type="file">
+							</div>
+							<div class="grupo">
+								<?php if ($trabajo[3]): ?>
+									<a href="../../upload/evaluacion/<?= $materia.'/'.$evaluacion.'/'.$trabajo[3] ?>" class="col-md-12 col-xs-12 col-sm-12" download><strong>ARCHIVO 3 CARGADO</strong></a>
+								<?php else: ?>
+									<a>SIN CARGAR</a>
+								<?php endif; ?>
+
+								<input id="file3" name="file3" type="file">
+							</div>
+							<div class="grupo">
+								<?php if ($trabajo[4]): ?>
+									<a href="../../upload/evaluacion/<?= $materia.'/'.$evaluacion.'/'.$trabajo[4] ?>" class="col-md-12 col-xs-12 col-sm-12" download><strong>ARCHIVO 4 CARGADO</strong></a>
+								<?php else: ?>
+									<a>SIN CARGAR</a>
+								<?php endif; ?>
+
+						
+								<input id="file4" name="file4" type="file">
+							</div>
 						</div>
+					<!-- /CARGAR ARCHIVO -->
+						
 						<div class="form-group row">
 							<input type="text" name="materia" value="<?= $materia  ?>" style="display: none;">
 							<input type="text" name="alumno" value="<?= $alumno ?>" style="display: none;">
@@ -640,7 +1038,16 @@
 						<button>Guardar</button>
 					</form>
 				</div>
-			</section>
+			</section>				
+			<?php endif ?>
+			<?php else: ?>
+				<section>
+					<div class="contenido">
+						<h1>La fecha límite de entrega de la evaluación ha finalizado</h1>
+					</div>
+				</section>
+			<?php endif ?>
+
 			<?php endif; ?>
 
 		</main>

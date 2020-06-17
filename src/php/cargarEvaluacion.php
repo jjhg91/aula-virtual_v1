@@ -3,17 +3,39 @@
 
 
 
-	$fecha = date("m-d-Y",time()) ;
+	$fecha = date("d-m-Y",time()) ;
 	$fecha1 = strtotime($fecha);
-	$limite = strtotime($fecha);
+	
 
 	$alumno = (int)$_POST['alumno'];
 	$materia = $_POST['materia'];
 	$evaluacion = $_POST['evaluacion'];
 
+	$nlink1 = $_POST['nlink1'];
+	$nlink2 = $_POST['nlink2'];
+	$nlink3 = $_POST['nlink3'];
+	$nlink4 = $_POST['nlink4'];
+	$link1 = $_POST['link1'];
+	$link2 = $_POST['link2'];
+	$link3 = $_POST['link3'];
+	$link4 = $_POST['link4'];
+	$descripcion = $_POST['descripcion'];
 
-	
+	$flim = $myPDO2->prepare("
+		SELECT fecha FROM actividades
+		WHERE 
+		id_profesorcursogrupo = $materia AND 
+		id_actividades = $evaluacion;  
+		");
+	$flim->execute();
+	$flimit = $flim->fetch();
+	$flimite = strtotime($flimit[0]);
 
+
+	if ( $fecha1 > $flimite ) {
+
+		header('location: ../../views/Evaluaciones/evaluacionDetalles.php?mat='.$materia.'&evalu='.$evaluacion.'&gu=f');
+	}
 
     $query = $myPDO->prepare("
         SELECT 
@@ -24,8 +46,10 @@
         inner join profesorcursogrupo on inscripcion.id_profesorcursogrupo = profesorcursogrupo.id_profesorcursogrupo
         inner join pensum on profesorcursogrupo.curso = pensum.id_pensum
         inner join especialidad on pensum.id_especialidad = especialidad.id_especialidad  
-        WHERE id_estudia = $alumno and periodo = 71 
-        AND profesorcursogrupo.id_profesorcursogrupo = $materia
+        WHERE 
+        id_estudia = $alumno AND
+        periodo = 71 AND 
+        profesorcursogrupo.id_profesorcursogrupo = $materia
         ");
     $query->execute();
     $resul2 = $query->fetch();
@@ -38,7 +62,10 @@
 
     $sel = $myPDO2->prepare("
     	SELECT * FROM actividades_estudiante
-    	WHERE id_estudiante = $alumno AND id_profesorcursogrupo = $materia AND id_actividades = $evaluacion;
+    	WHERE 
+    	id_estudiante = $alumno AND 
+    	id_profesorcursogrupo = $materia AND 
+    	id_actividades = $evaluacion ;
     	");
     $sel->execute();
     $select = $sel->fetch();
@@ -47,12 +74,34 @@
 	
     
     if (!$select) {
-    	
     	$insert = $myPDO2->prepare("
-	    	INSERT INTO actividades_estudiante(id_profesorcursogrupo, id_actividades, id_estudiante, fecha, file1, file2, file3, file4)
-			VALUES($materia, $evaluacion, $alumno, '$fecha', '', '', '', '');
+	    	INSERT INTO actividades_estudiante(id_profesorcursogrupo, id_actividades, id_estudiante, fecha, file1, file2, file3, file4,nlink1,nlink2,nlink3,nlink4,link1,link2,link3,link4,descripcion)
+			VALUES($materia, $evaluacion, $alumno, '$fecha', '', '', '', '','$nlink1','$nlink2','$nlink3','$nlink4','$link1','$link2','$link3','$link4','$descripcion');
     	");
     	$insert->execute();
+    }else{
+    	$upda = $myPDO2->prepare("
+			UPDATE actividades_estudiante
+			SET 
+			fecha = '$fecha', 
+			nlink1 = '$nlink1',
+			nlink2 = '$nlink2',
+			nlink3 = '$nlink3',
+			nlink4 = '$nlink4',
+			link1 = '$link1',
+			link2 = '$link2',
+			link3 = '$link3',
+			link4 = '$link4',
+			descripcion = '$descripcion'
+			WHERE 
+			id_actividades_estudiante = $select[0] AND
+			id_profesorcursogrupo = $materia AND 
+			id_actividades = $evaluacion AND
+			id_estudiante = $alumno	;
+    		");
+
+    	$upda->execute();
+    	
     }
     
 
