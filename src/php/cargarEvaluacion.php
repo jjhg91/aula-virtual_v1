@@ -31,12 +31,15 @@
 	$flimit = $flim->fetch();
 	$flimite = strtotime($flimit[0]);
 
+	print "F: ".$fecha." - L: ".$flimit[0];
 
 	if ( $fecha1 > $flimite ) {
+		print"HOLA";
+		exit;
 
 		header('location: ../../views/Evaluaciones/evaluacionDetalles.php?mat='.$materia.'&evalu='.$evaluacion.'&gu=f');
 	}
-
+	exit;
     $query = $myPDO->prepare("
         SELECT 
         pensum.descripcion, 

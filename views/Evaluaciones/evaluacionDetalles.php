@@ -584,7 +584,7 @@
 									");
 								$flim->execute();
 								$flimit = $flim->fetch();
-								$flimite = strtotime($flimit[0]);
+								$flimite = strtotime($flimit[0]."+ 1 days");
 
 
 								if ( $fecha1 < $flimite ):
@@ -875,7 +875,7 @@
 						");
 					$flim->execute();
 					$flimit = $flim->fetch();
-					$flimite = strtotime($flimit[0]);
+					$flimite = strtotime($flimit[0]."+ 1 days");
 
 
 					if ( $fecha1 < $flimite ):
