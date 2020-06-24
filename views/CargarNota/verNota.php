@@ -26,7 +26,7 @@
 
 
 
-	<link rel="icon" type="image/png" href="../../media/logo.png" />
+	<link rel="Shortcut Icon" type="image/x-icon" href="../../media/logo.ico" />
 	<title>IUTJMC - Cargar Notas</title>
 
 

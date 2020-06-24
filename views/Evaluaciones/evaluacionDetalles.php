@@ -22,7 +22,7 @@
 
 	
 
-	<link rel="icon" type="image/png" href="../../media/logo.png" />
+	<link rel="Shortcut Icon" type="image/x-icon" href="../../media/logo.ico" />
 	<title>IUTJMC - Evaluaciones</title>
 
 
@@ -399,6 +399,14 @@
 				$query = $myPDO->prepare("SELECT cedula, p_nombres, p_apellido FROM estudiante WHERE id_estudia = $actividadE[3] AND regimen_estudio = 2");
 				$query->execute();
 				$estu= $query->fetch();
+
+				$not = $myPDO2->prepare("
+					SELECT * FROM notas 
+					WHERE id_estudiante = $actividadE[3] AND
+					id_plan_evaluacion = $actividadE[2]
+					");
+				$not->execute();
+				$notas= $not->fetch();
 			?>
 
 			
@@ -421,24 +429,70 @@
 						<br>
 						<span><small><strong>Fecha de Entrega: </strong><?= $actividad[4]  ?></small></span>
 						<br>
-						<span><small>
-							<strong>Estatus: </strong>
-							<?php if(!$actividadE[9]): ?>
-							SIN CORREGIR
-							<?php else: ?>
-							CORREGIDO
-							<?php endif; ?>
-						</small></span>
+						<br>			
+						<?php if(!$notas): ?>
+						<span><strong>Estatus: </strong>SIN CORREGIR</span>
+						<?php else: ?>
+						<span><strong>Estatus: </strong>CORREGIDO</span>
+						<br>
+						<span><strong>Nota: </strong><?= $notas[4] ?></span>
+						<br>
+						<span><strong>Observacion: </strong><?= $notas[5] ?></span>
 
+
+						<!-- MOSTRAR CORRECIONES -->
+						
+
+							<?php if ($notas[6] or $notas[7] or $notas[8] or $notas[9]): ?>
+							<br>
+							<br>
+							<h4>Descargar Correcciones</h4>
+							<br>
+							<?php endif ?>
+
+							<?php if ($notas[6]): ?>
+							<a href="../../upload/correcciones/<?= $prof ?>/<?= $actividadE[2] ?>/<?= $notas[6] ?>" download>Material 1</a>
+							<br>
+							<br>
+							<?php endif ?>
+
+							<?php if ($notas[7]): ?>
+							<a href="../../upload/correcciones/<?= $prof ?>/<?= $actividadE[2] ?>/<?= $notas[7] ?>" download>Material 2</a>
+							<br>
+							<br>
+							<?php endif ?>
+
+							<?php if ($notas[8]): ?>
+							<a href="../../upload/correcciones/<?= $prof ?>/<?= $actividadE[2] ?>/<?= $notas[8] ?>" download>Material 3</a>
+							<br>
+							<br>
+							<?php endif ?>
+
+							<?php if ($notas[9]): ?>
+							<a href="../../upload/correcciones/<?= $prof ?>/<?= $actividadE[2] ?>/<?= $notas[9] ?>" download>Material 4</a>
+							<br>
+							<br>
+							<?php endif ?>
+
+						
+						<!-- /MOSTRAR CORRECIONES -->
+
+						<?php endif; ?>
+						
 
 
 					<!-- DESCRIPCION ENTRAGADA POR EL ESTUDIANTE -->
 					<div class="Trabajos">
 						<br>
 						<br>
+						<h3>DATOS ENVIADOS POR EL ESTUDIANTE</h3>
+						
+						<?php if ($actividadE[29]): ?>
 						<h4>Descripcion</h4>
 						<br>
 						<p><?= nl2br($actividadE[29]); ?></p>
+						<?php endif ?>
+						
 					</div>
 					<!-- /DESCRIPCION ENTRAGADA POR EL ESTUDIANTE -->
 
@@ -484,10 +538,14 @@
 
 					<!-- ARCHIVOS ENTREGADOS POR EL ESTUDIANTE -->
 						<div class="trabajos">
+
+							<?php if ($actividadE[5] or $actividadE[6] or $actividadE[7] or $actividadE[8]): ?>
 							<br>
 							<br>
 							<h4>Archivos</h4>
-							<br>
+							<br>	
+							<?php endif ?>
+
 							<?php if ($actividadE[5]): ?>
 							<a href="../../upload/evaluacion/<?= $materia.'/'.$evaluacion.'/'.$actividadE[5] ?>" download>Archivo 1</a>
 							<br>
@@ -515,23 +573,54 @@
 
 					<!-- CORREGIR EVALUACION PROFESOR -->
 						<div id="OpenModal<?= $actividadE[3] ?>" class="Modal">
-							<form method="post" action="../../src/php/corregirEvaluacion.php">
+							<form enctype="multipart/form-data" method="post" action="../../src/php/cargarNota.php">
 								<div class="grupo">
 									<label for="nota">Nota</label>
-									<input name="nota" type="number" value="<?= $actividadE[10] ?>">
+									<select name="nota" id="nota">
+										<?php 
+										$n = 0;
+										while ( $n <= 20) {
+											
+
+											if ($notas[4] == $n) {
+												print '<option selected="selected" value="'.$n.'">'.$n.'</option>';
+											}else{
+												print '<option value="'.$n.'">'.$n.'</option>';
+											}
+											$n++;
+
+										} ?>
+									</select>
 								</div>
 								<div class="grupo">
 									<label for="">Observacion</label>
-									<textarea name="observacion" id="observacion" cols="30" rows="10"><?= $actividadE[11] ?></textarea>
+									<textarea name="observacion" id="observacion" cols="30" rows="10"><?= $notas[5] ?></textarea>
 								</div>
 
-								<div class="grupo">
-									<input type="text" name="actividadE" value="<?= $actividadE[12] ?>" style="display: none;">
+								<div class="grupo_oculto">
 									<input type="text" name="materia" value="<?= $materia ?>" style="display: none;">
-									<input type="text" name="evaluacion" value="<?= $evaluacion ?>" style="display: none;">
+									<input type="text" name="plan" value="<?= $actividad[22] ?>" style="display: none;">
+									<input type="text" name="alumno" value="<?= $actividadE[3] ?>" style="display: none;">
+									<input type="text" name="toggle" value="2" style="display: none;">
+									<input type="text" name="evalu" value="<?= $actividadE[0] ?>" style="display: none;">
 								</div>
 
 								<div class="grupo">
+
+									<div class="grupo">
+
+										<h3>Archivos</h3>
+									</div>
+									<input type="file" name="file1">
+									<br>
+									<input type="file" name="file2">
+									<br>
+									<input type="file" name="file3">
+									<br>
+									<input type="file" name="file4">
+								</div>
+
+								<div class="botones">
 									<button  type="submit">Guardar</button>
 									<a  href="#close" class="cerrar">Cerrar</a>
 								</div>
@@ -565,6 +654,14 @@
 					$query = $myPDO->prepare("SELECT cedula, p_nombres, p_apellido FROM estudiante WHERE id_estudia = $actividadE[3] AND regimen_estudio = 2");
 					$query->execute();
 					$estu= $query->fetch();
+
+					$not2 = $myPDO2->prepare("
+						SELECT * FROM notas 
+						WHERE id_estudiante = $actividadE[3] AND
+						id_plan_evaluacion = $actividadE[2]
+						");
+					$not2->execute();
+					$notas2= $not2->fetch();
 			?>
 
 			<section class="trabajos cargados">
@@ -605,18 +702,64 @@
 						<br>
 						<span><small><strong>Fecha de Entrega: </strong><?= $actividad[4]  ?></small></span>
 						<br>
-						<span><small>
-							<strong>Estatus: </strong>
-							<?php if(!$actividadE[9]): ?>
-							SIN CORREGIR
-							<?php else: ?>
-							CORREGIDO
-							<?php endif; ?>
-						</small></span>
+						<br>
+						<br>			
+						
+						<?php if(!$notas2): ?>
+						<span><strong>Estatus: </strong>SIN CORREGIR</span>
+						<?php else: ?>
+						<span><strong>Estatus: </strong>CORREGIDO</span>
+						<br>
+						<span><strong>Nota: </strong><?= $notas2[4] ?></span>
+						<br>
+						<span><strong>Observacion: </strong><?= $notas2[5] ?></span>
+						
+
+						<!-- MOSTRAR CORRECIONES -->
+						
+
+							<?php if ($notas2[6] or $notas2[7] or $notas2[8] or $notas2[9]): ?>
+							<br>
+							<br>
+							<h4>Descargar Correcciones</h4>
+							<br>
+							<?php endif ?>
+
+							<?php if ($notas2[6]): ?>
+							<a href="../../upload/correcciones/<?= $prof ?>/<?= $actividadE[2] ?>/<?= $notas2[6] ?>" download>Correccion 1</a>
+							<br>
+							<br>
+							<?php endif ?>
+
+							<?php if ($notas2[7]): ?>
+							<a href="../../upload/correcciones/<?= $prof ?>/<?= $actividadE[2] ?>/<?= $notas2[7] ?>" download>Correccion 2</a>
+							<br>
+							<br>
+							<?php endif ?>
+
+							<?php if ($notas2[8]): ?>
+							<a href="../../upload/correcciones/<?= $prof ?>/<?= $actividadE[2] ?>/<?= $notas2[8] ?>" download>Correccion 3</a>
+							<br>
+							<br>
+							<?php endif ?>
+
+							<?php if ($notas2[9]): ?>
+							<a href="../../upload/correcciones/<?= $prof ?>/<?= $actividadE[2] ?>/<?= $notas2[9] ?>" download>Correccion 4</a>
+							<br>
+							<br>
+							<?php endif ?>
+
+						
+						<!-- /MOSTRAR CORRECIONES -->
+
+
+							
+						<?php endif ?>
 
 
 
 					<!-- DESCRIPCION ENTRAGADA POR EL ESTUDIANTE -->
+					<?php if ($actividadE[29]): ?>
 					<div class="Trabajos">
 						<br>
 						<br>
@@ -624,6 +767,7 @@
 						<br>
 						<p><?= nl2br($actividadE[29]); ?></p>
 					</div>
+					<?php endif ?>
 					<!-- /DESCRIPCION ENTRAGADA POR EL ESTUDIANTE -->
 
 
@@ -667,6 +811,7 @@
 
 
 					<!-- ARCHIVOS ENTREGADOS POR EL ESTUDIANTE -->
+						<?php if ($actividadE[5] or $actividadE[6] or $actividadE[7] or $actividadE[8]): ?>
 						<div class="trabajos">
 							<br>
 							<br>
@@ -693,7 +838,8 @@
 							<?php if ($actividadE[8]): ?>
 							<a href="../../upload/evaluacion/<?= $materia.'/'.$evaluacion.'/'.$actividadE[8] ?>" download>Archivo 4</a>
 							<?php endif ?>	
-						</div>
+						</div>	
+						<?php endif ?>
 					<!-- /ARCHIVOS ENTREGADOS POR EL ESTUDIANTE -->
 
 					<!-- MODAL EDITAR EVALUACION ENVIADA POR ALUMNO -->

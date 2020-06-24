@@ -22,7 +22,7 @@
 
 
 
-	<link rel="icon" type="image/png" href="../../media/logo.png" />
+	<link rel="Shortcut Icon" type="image/x-icon" href="../../media/logo.ico" />
 	<title>IUTJMC - Cargar Notas</title>
 
 
@@ -81,12 +81,13 @@
 								");
 							$tog->execute();
 							$toggle = $tog->fetch();						 
-						if(is_array($toggle) == false): ?>
+						#if(is_array($toggle) == false): ?>
 						<a href="cargar.php?mat=<?= $plan[1] ?>&plan=<?= $plan[0] ?>"><span class="icon-plus"></span></a>
-						<?php else: ?>
+						<?php #else: ?>
+						<!-- 
 						<a href="editarNota.php?mat=<?= $plan[1] ?>&plan=<?= $plan[0] ?>"><span class="icon-pencil"></span></a>
-						<a href="verNota.php?mat=<?= $plan[1] ?>&plan=<?= $plan[0] ?>"><span class="icon-file-text"></span></a>
-						<?php endif; ?>
+						<a href="verNota.php?mat=<?= $plan[1] ?>&plan=<?= $plan[0] ?>"><span class="icon-file-text"></span></a> -->
+						<?php #endif; ?>
 				
 						
 					</div>

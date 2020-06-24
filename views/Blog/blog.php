@@ -18,7 +18,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- /PROBANDO RESPOSNIVE DESIGN -->
 
-	<link rel="icon" type="image/png" href="../../media/logo.png" />
+	<link rel="Shortcut Icon" type="image/x-icon" href="../../media/logo.ico" />
 	<title>IUTJMC - Blog</title>
 
 

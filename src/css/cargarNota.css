@@ -249,6 +249,68 @@ body main section div.titulo div.titulo_der {
 body main section div.contenido {
   padding: 20px 0px;
 }
+body main section div.contenido div.editar {
+  margin-top: 40px;
+  height: 0px;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  display: non;
+}
+body main section div.contenido div.editar form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 20px;
+}
+body main section div.contenido div.editar form div {
+  width: 100%;
+  margin-top: 20px;
+}
+body main section div.contenido div.editar form input {
+  height: 30px;
+  padding-left: 10px;
+  background-color: #e8e8e8;
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+}
+body main section div.contenido div.editar form input[type=text] {
+  margin-bottom: 10px;
+}
+body main section div.contenido div.editar form textarea, body main section div.contenido div.editar form select {
+  width: 100%;
+  padding: 10px;
+  background-color: #e8e8e8;
+  border-radius: 5px;
+  border: none;
+}
+body main section div.contenido div.editar form button, body main section div.contenido div.editar form a.cerrar {
+  margin-top: 20px;
+  padding: 10px 30px 10px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #5f77ad;
+  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.3);
+}
+body main section div.contenido div.editar form a.close {
+  padding: 10px 30px 10px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #ff4a4a;
+  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+  color: black;
+  color: black;
+}
+body main section div.contenido div.editar:target {
+  height: auto;
+  opacity: 1;
+  pointer-events: auto;
+  display: block;
+}
 body main form section.section_agregar {
   width: 100%;
   margin-top: 20px;

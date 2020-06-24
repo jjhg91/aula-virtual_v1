@@ -11,7 +11,7 @@
 	<!-- LOADER
 	PANTALLA PARA MOSTRAR HASTA QUE CARGUE LA PAGINA -->
 	<div class="loader">
-		<img src="../../media/logo.png" alt="" width="200px">
+		<img src="../../media/logo.jpg" alt="" width="200px">
 		<span>Cargando...</span>
 	</div>
 	<!-- /LOADER -->
@@ -58,9 +58,9 @@
 
 			<!-- prueba -->
 			<?php if($_SESSION['genero'] == 1): ?>
-			<img src="../../media/h.png" alt="..." >
+			<img src="../../media/h.jpg" alt="..." >
 			<?php else: ?>
-			<img src="../../media/m.png" alt="..." >
+			<img src="../../media/m.jpg" alt="..." >
 			<?php endif; ?>
 			<!-- prueba -->
 

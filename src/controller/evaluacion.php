@@ -88,7 +88,7 @@
 		inner join valor on plan_evaluacion.valor = valor.id_valor
 		inner join actividades_estudiante on actividades_estudiante.id_actividades = actividades.id_actividades
 		left join notas on notas.id_actividades_estudiante = actividades_estudiante.id_actividades_estudiante
-		WHERE actividades.id_profesorcursogrupo = $materia AND  actividades.id_actividades = $evaluacion ;
+		WHERE actividades.id_profesorcursogrupo = $materia AND  actividades.id_actividades = $evaluacion;
     	");
     $actE->execute();
     $actividadesE = $actE->fetchAll();

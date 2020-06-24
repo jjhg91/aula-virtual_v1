@@ -1,7 +1,8 @@
 $(window).on('load', function(){
-	setTimeout(function(){
-		$('.loader').css({visibility: "hidden",opacity: "0"});
-	}, 1000);
+	$('.loader').css({visibility: "hidden",opacity: "0"});
+	// setTimeout(function(){
+	// 	$('.loader').css({visibility: "hidden",opacity: "0"});
+	// }, 1000);
 	
 })
 
