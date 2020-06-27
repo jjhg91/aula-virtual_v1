@@ -87,7 +87,11 @@
 						<?php elseif ($post[3] == 'profesor'): ?>
 						<h3><?= ucwords(strtolower($nombre[0])) ?></h3>
 						<?php endif ?>
-						<span><small>Fecha: <?= $post[4] ?></small></span>
+						<?php 
+							$fee = explode("-", $post[4]); 
+
+						?>
+						<span><small>Fecha: <?= $fee[1]."-".$fee[0]."-".$fee[2] ?></small></span>
 					</div>
 
 					<?php if($_SESSION['user'] == 'profesor'): ?>
