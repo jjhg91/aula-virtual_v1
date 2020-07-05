@@ -127,7 +127,7 @@
 							<a href="../Blog/blog.php?mat=<?= $row[2] ?>">Blog</a>
 						</li>
 						<li>
-							<a href="../Foro/foro.php?mat=<?= $row[2] ?>">Foro</a>
+							<a href="../Foro/foroTemas.php?mat=<?= $row[2] ?>">Foro</a>
 						</li>
 					
 						<?php if ($_SESSION['user'] === 'profesor'): ?>

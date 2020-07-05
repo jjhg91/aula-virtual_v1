@@ -1,10 +1,16 @@
 <?php 
 	require_once('conn.php');
-	
+	require_once('../../src/php/sesiones.php');
+	sesion();
+
+
+	$tema = $_POST['tema'];
+	$materia = $_POST['materia'];
+
 	$mensaje = $_POST['message'];
-	$materia = (int)$_POST['materia'];
-	$usuario = (int)$_POST['usuario'];
-	$level = $_POST['level'];
+	$post = (int)$_POST['post'];
+	$usuario = $_SESSION['id'];
+	$level = $_SESSION['user'];
 	$fecha = date("m-d-Y",time()) ;
 
 	$tem = (int)$_POST['tema'];
@@ -21,10 +27,10 @@
 		$mensaje = stripslashes($mensaje);
 		$mensaje =  addslashes($mensaje);
 		
-		if ($level == 'profesor' OR $level == 'alumno') {
+		if ($level == 'profesor' || $level == 'alumno') {
 			$insertar = $myPDO2->prepare("
-			INSERT INTO foro(id_profesorcursogrupo, usuario, nivel, fecha, descripcion, id_foro_tema)
-			VALUES($materia, $usuario, '$level', '$fecha', '$mensaje',$tema);
+			INSERT INTO foro_respuesta(id_foro, usuario, nivel, fecha, descripcion)
+			VALUES($post, $usuario, '$level', '$fecha', '$mensaje');
 			");
 		$insertar->execute();
 		}
@@ -36,8 +42,6 @@
 
 	header('location: ../../views/Foro/foro.php?mat='.$materia.'&tem='.$tema);
 	
-
-
 
 
 

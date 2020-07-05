@@ -352,7 +352,7 @@
 
 							<div class="botones">
 								<button class="item" type="submit" >Guardar</button>
-								<a class="item close" href="#close" class="cerrar" >Cancelar</a>
+								<a class="item close cerrar" href="#close"  >Cancelar</a>
 							</div>
 
 

@@ -101,11 +101,83 @@
 						</div>
 					</div>
 					<?php endif ?>
-
+                
 				</div>
 				<div class="contenido">
 					<p> <?= nl2br($post[5]) ?> </p>
 				</div>
+                
+                <!-- RESPUESTAS -->
+				<?php 
+					$res = $myPDO2->prepare("
+						SELECT * from foro_respuesta
+						WHERE id_foro = $post[0]
+						"); 
+					$res->execute();
+					$respuestas = $res->fetchAll();	 	
+				 ?>
+				
+				<?php if (!empty($respuestas)): ?>
+                <div class="contenido">
+                    <div>
+                        <h4>Respuestas</h4>
+                        <br>
+                    </div>
+                    <?php foreach ($respuestas as $respuesta): 
+                    	if ($respuesta[3] == 'alumno') {
+							$nom2 = $myPDO->prepare("
+							SELECT p_nombres, p_apellido from estudiante 
+							WHERE id_estudia = $respuesta[2]
+							");
+							$nom2->execute();
+							$nom22 = $nom2->fetch();
+							$nombre2 = $nom22[0] . " " . $nom22[1];
+
+							} elseif($respuesta[3] == 'profesor') {
+							$nom2 = $myPDO->prepare("
+							SELECT nombres from personal 
+							WHERE id_personal = $respuesta[2]
+							");
+							$nom2->execute();
+							$nombre2 = $nom2->fetch()[0];
+							}
+                    ?>
+                    	<div>
+	                        <p><b> <?=  ucwords(strtolower($nombre2)) ?> <small>(<?= $respuesta[4] ?>)</small>:</b></p>
+	                        <p>----- <?= $respuesta[5] ?></p>
+	                        <br>
+	                    </div>
+                    <?php endforeach ?>
+                    
+                </div>
+                <?php endif ?>
+                <!-- /RESPUESTAS -->
+
+                <!-- RESPONDER -->
+                <div class="contenido">
+                    <a href="#ModalResponder<?= $post[0] ?>">Responder</a>
+                    <div id="ModalResponder<?= $post[0] ?>" class="editar">
+                    	<form id="respuesta<?= $post[0] ?>" method="post" action="../../src/php/foroRespuesta.php">
+							<div class="grupo">
+								<textarea name="message" id="message" cols="30" rows="10" placeholder="Responder mensaje"></textarea>
+							</div>
+							<div class="grupo_oculto">	
+	                     		<input type="text" name="post" value="<?= $post[0] ?>" style="display: none;">
+	                     		<input type="text" name="materia" value="<?= $prof ?>" style="display: none;">
+	                     		<input type="text" name="tema" value="<?= $_GET['tem'] ?>" style="display: none;">
+
+							</div>
+							<div class="botones">
+								<button form="respuesta<?= $post[0] ?>" class="item" type="submit">Guardar</button>
+								<a href="#cerrar" class="item close cerrar" >Cancelar</a>
+							</div>
+							
+						</form>
+
+                    </div>
+                </div>
+                <!-- /RESPONDER -->
+
 			</section>	
 			<?php endforeach; ?>
 
@@ -121,7 +193,9 @@
 						<div class="grupo_oculto">
 							<input type="text" name="materia" value="<?= $prof ?>" style="display: none;">
                      		<input type="text" name="usuario" value="<?= $_SESSION['id'] ?>" style="display: none;">
+                     		<input type="text" name="tema" value="<?= $_GET['tem'] ?>" style="display: none;">
                      		<input type="text" name="level" value="<?= $_SESSION['user'] ?>" style="display: none;">
+
 						</div>
 						<button type="submit">Guardar</button>
 					</form>
