@@ -64,7 +64,7 @@
 				<div class="contenido">
 					
 					
-					<p><strong>Descripcion: </strong> AQUI TENDRAS TODAS LAS DISCUCIONES GENERALES DE LA MATERIA</p>
+					<p><strong>Descripcion: </strong> DISCUSIONES GENERALES DE LA MATERIA</p>
 					<br>
 					<a href="foro.php?mat=<?= $prof ?>&tem=0">INGRESAR AL FORO</a>				
 
