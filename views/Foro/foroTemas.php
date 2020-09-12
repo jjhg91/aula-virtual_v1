@@ -131,7 +131,7 @@
 
 
 						<div class="grupo_oculto">
-							<input type="text" name="materia" style="display: none;" value="<?= $prof ?> ">
+							<input type="text" name="materia" style="display: none;" value="<?= $prof ?>">
 						</div>
 
 

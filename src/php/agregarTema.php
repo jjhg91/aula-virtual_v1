@@ -5,6 +5,8 @@
 	$descripcion = $_POST['descripcion'];
 	$materia = $_POST['materia'];
 
+	
+
 	if ( is_string($titulo) AND is_string($descripcion) ){
 
 		$insertar = $myPDO2->prepare("
