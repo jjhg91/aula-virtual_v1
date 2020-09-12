@@ -87,8 +87,8 @@
 					<?php if ($_SESSION['user'] == 'profesor'): ?>
 					<div class="titulo_der">
 						<div class="enlaces">
-							<a title="Editar" href="evaluacionDetalles.php?mat=<?= $prof ?>&evalu=<?= $actividad[0]  ?>#ModalEditar"><span class="icon-pencil"></span></a>
-							<a title="Eliminar" href="../../src/php/eliminarEvaluacion.php?mat=<?= $prof ?>&eval="><span class="icon-bin"></span></a>
+							<!-- <a title="Editar" href="foroTemas.php?mat=<?= $prof ?>&evalu=<?= $tema[0]  ?>#ModalEditar"><span class="icon-pencil"></span></a> -->
+							<a title="Eliminar" href="../../src/php/eliminarForoTemas.php?mat=<?= $prof ?>&tema=<?= $tema[0]?>"><span class="icon-bin"></span></a>
 						</div>
 					</div>
 					<?php endif ?>	

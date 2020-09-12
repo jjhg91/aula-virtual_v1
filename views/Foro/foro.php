@@ -97,7 +97,7 @@
 					<?php if($_SESSION['user'] == 'profesor'): ?>
 					<div class="titulo_der">
 						<div class="enlaces">
-							<a href="../../src/php/eliminarForo.php?mat=<?= $prof ?>&foro=<?= $post[0] ?>"><span class="icon-bin"></span></a>
+							<a href="../../src/php/eliminarForo.php?mat=<?= $prof ?>&foro=<?= $post[0] ?>&tem=<?= $_GET['tem']?>"><span class="icon-bin"></span></a>
 						</div>
 					</div>
 					<?php endif ?>

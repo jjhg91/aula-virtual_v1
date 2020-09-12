@@ -5,6 +5,7 @@
 
 	$valor = (int)$_GET['foro'];
 	$materia = (int)$_GET['mat'];
+	$tema = (int)$_GET['tem'];
 
 
 	$id = $_SESSION['id'];
@@ -20,9 +21,9 @@
 		
 		
 		if ($query->execute()) {
-			header('location: ../../views/Foro/foro.php?mat='.$materia.'&gu=t');
+			header('location: ../../views/Foro/foro.php?mat='.$materia.'&tem='.$tema.'&gu=t');
 		} else {
-			header('location: ../../views/Foro/foro.php?mat='.$materia.'&gu=f');
+			header('location: ../../views/Foro/foro.php?mat='.$materia.'&tem='.$tema.'&gu=f');
 		}
 
 
