@@ -17,7 +17,9 @@ El aula virtual cuenta con diferentes modulos para una mejor organizacion y cont
 
 Para su instalacion de debera contar con la version de php mayor a 5.6.
 
-Constar con dos bases de datos, las cuales llevaran de nombre **aula** y **jmc**. las cuales se restauraran desde los respectivos archivos aula.sql y jmc.sql ubicados en la raiz del repositorio. 
+Constar con mysql dos bases de datos, las cuales llevaran de nombre **aula** y **jmc**. las cuales se restauraran desde los respectivos archivos aula.sql y jmc.sql ubicados en la raiz del repositorio. El archivo de configuracion de la conexion con la base de datos se encuenta en: `src/php/conn.php`
+
+##### USUARIOS DE PRUEBA
 
 `PROFESOR DE PRUEBA, USUARIOS Y CONTRASEÑA:  5428438`
 
