@@ -19,7 +19,9 @@ Para su instalacion de debera contar con la version de php mayor a 5.6.
 
 Constar con dos bases de datos, las cuales llevaran de nombre **aula** y **jmc**. las cuales se restauraran desde los respectivos archivos aula.sql y jmc.sql ubicados en la raiz del repositorio. 
 
+`PROFESOR DE PRUEBA, USUARIOS Y CONTRASEÑA:  5428438`
 
+`ESTUDIANTE DE PRUEBA, USUARIOS Y CONTRASEÑA: 29594137`
 
 ------------
 
